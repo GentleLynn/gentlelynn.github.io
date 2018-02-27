@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Gentlelynn" />
+
+
+
+<meta name="description" content="曾经在实习的时候徽大大布置的任务，其中部分由徽大大翻译，部分由我翻译。">
+<meta name="keywords" content="翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The art of writing small and plain functions">
+<meta property="og:url" content="http://yoursite.com/2016/09/12/zbj180227/index.html">
+<meta property="og:site_name" content="For my cat">
+<meta property="og:description" content="曾经在实习的时候徽大大布置的任务，其中部分由徽大大翻译，部分由我翻译。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-27T13:01:23.490Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The art of writing small and plain functions">
+<meta name="twitter:description" content="曾经在实习的时候徽大大布置的任务，其中部分由徽大大翻译，部分由我翻译。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="For my cat" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>The art of writing small and plain functions | For my cat</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Gentlelynn</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextjs/">nextjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gentlelynn</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Gentlelynn</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-zbj180227" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/12/zbj180227/" class="article-date">
+      <time datetime="2016-09-12T12:57:10.000Z" itemprop="datePublished">2016-09-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      The art of writing small and plain functions
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>     曾经在实习的时候徽大大布置的任务，其中部分由徽大大翻译，部分由我翻译。<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br>原文地址：<a href="https://rainsoft.io/the-art-of-writing-small-and-plain-functions/?utm_source=codropscollective" target="_blank" rel="noopener">https://rainsoft.io/the-art-of-writing-small-and-plain-functions/?utm_source=codropscollective</a></the></p>
+<p>The complexity of software applications is growing. The code quality is important in order to make the application stable and easily extensible.</p>
+<p>随着应用软件的复杂度的不断增长，代码的质量在增加应用的稳定性和易扩展性方面起到了至关重要的作用。</p>
+<p>Unfortunately almost every developer, including myself, in his career faced with bad quality code. And it’s a swamp. Such code has the following harmful characteristics:</p>
+<p>然而不幸的是，包括我自己在内的每一位开发者在其职业生涯中都要不可避免地面对一些糟糕的代码。这些代码都有如下的不好的特点： </p>
+<ol>
+<li>Functions are too long and do too many things </li>
+<li>Often functions have side effects that are difficult to understand or even debug </li>
+<li>Unclear naming of functions and variables</li>
+<li>Fragile code: a small modification unexpectedly breaks other application components</li>
+<li>Poor or missing code coverage</li>
+</ol>
+<p>1.函数太长且实现了太多的功能</p>
+<p>2.难以理解和调试</p>
+<p>3.复杂多样的函数名称和变量声明</p>
+<p>4.脆弱的代码：一个小小的修改可能会意外的导致其他组件崩溃</p>
+<p>5.代码测试覆盖率低</p>
+<p>It sounds very common: “I don’t understand how this code works”, “this code is a mess”,”it’s hard to modify this code” and the like.</p>
+<p>我们可能经常会听到：“我真的不明白这个代码是如何执行的”，“这个代码真是坑”，“这个代码太难改了”诸如此类的抱怨。</p>
+<p>Once I had a situation when my colleague quit his job because he dealt with a REST API on Ruby that was hard to maintain. He received this project from previous team of developers. </p>
+<p>曾经有一次我的同事放弃了他的工作，只因为他要处理的一个用Ruby编写的REST API太难维护。而那个项目是由之前的开发团队手中接手的。</p>
+<p>Fixing current bugs creates new ones, adding new features creates a new series of bugs and so on (fragile code). The client didn’t want to rebuild the application with a better design, and the developer made the correct decision to quit.</p>
+<p>修改现有的bug会产生新的更多的bugs，添加一个新的功能会引发一连串的连锁反应，产生很多bugs等等诸如此类的情况（这也就是我们所说的fragile codes）。如果客户不想重构更好的应用设计，那么作为开发者最明智的决定就是退出。</p>
+<p>Ok, such situations happen often and are sad. But what do to?</p>
+<p>好吧，这个坑就是这样无处不在让人头疼，那么作为程序开发者的我们，该如何去应对或者说尽量避免这种情况的发生呢？</p>
+<p>The first to keep in mind: simply making the application run and taking care of the code quality are different tasks.</p>
+<p>牢记在心的一件事：代码的可运行性和注重代码质量是两件事。</p>
+<p>On one side you implement the app requirements. But on the other side you should take time to verify if any function doesn’t have too much responsibility, write comprehensive variable and function names, avoid functions with side effects and so on.</p>
+<p>一方面你需要完成应用开发需求，但是另一方面你要花时间去验证某个函数是否做了很多事情。命名容易理解的变量和函数名称，避免函数的耦合性等等。</p>
+<p>The functions (including object methods) are the little gears that make the application run. First you should concentrate on their structure and composition. The current article covers best practices how to write plain, understandable and easy to test functions.</p>
+<p>函数（包括对象方法）是保证应用运行的最小单元。首先你应该专注于他们的结构和组成。本文将通过实例很好的讲述了如何写出一个单一可读和可测试的函数。</p>
+<h3 id="Functions-should-be-small-Really-small-函数要小且足够的小"><a href="#Functions-should-be-small-Really-small-函数要小且足够的小" class="headerlink" title="Functions should be small. Really small 函数要小且足够的小"></a>Functions should be small. Really small 函数要小且足够的小</h3><p>Big functions that have a lot of responsibility should be avoided and split into small ones. Big black box functions are difficult to understand, modify and especially test.</p>
+<p>我们应该避免庞大的拥有很多功能的大函数，应该将其分解成相应的小函数。庞大的黑盒函数是很不可读，难以修改和不易测试的。</p>
+<p>Suppose a scenario when a function should return the weight of an array, map or plain JavaScript object. The weight is calculated by summing the property values:</p>
+<p>假设一个场景：当一个功能函数需要通过返回数组，map或者简单的js对象的值。而这个值是通过所有属性值的和而得到的。</p>
+<ul>
+<li>1 point for null or undefined </li>
+<li>2 points for a primitive type</li>
+<li>4 points for an object or function.</li>
+<li>未定义和null值表示1分</li>
+<li>一个简单对象是2分（含有零个或多个的key/value对）</li>
+<li>函数和自定义对象是4分</li>
+</ul>
+<p>For example the weight of an array [null, ‘Hello World’, {}] is calculated this way: 1 (for null) + 2 (for string primitive type) + 4 (for an object) = 7.</p>
+<p>例如一个对象集合是 [null,’hello world’,{}],计算公式是：1(for null) + 2(for string) + 4（for an object）= 7</p>
+<h3 id="Step-0-The-initial-big-function-原始的庞大函数"><a href="#Step-0-The-initial-big-function-原始的庞大函数" class="headerlink" title="Step 0: The initial big function 原始的庞大函数"></a>Step 0: The initial big function 原始的庞大函数</h3><p>Let’s start with the worst practice. The logic is coded within a single big function</p>
+<p>让我们从一个反面例子开始。将所有逻辑放在一个庞大的函数里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function getCollectionWeight(collection) &#123;  </span><br><span class="line">    let collectionValues;</span><br><span class="line">    if (collection instanceof Array) &#123;</span><br><span class="line">        collectionValues = collection;</span><br><span class="line">    &#125; else if (collection instanceof Map) &#123;</span><br><span class="line">        collectionValues = [...collection.values()];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        collectionValues = Object.keys(collection).map(function (key) &#123;</span><br><span class="line">            return collection[key];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    return collectionValues.reduce(function(sum, item) &#123;</span><br><span class="line">        if (item == null) &#123;</span><br><span class="line">            return sum + 1;</span><br><span class="line">        &#125; </span><br><span class="line">        if (typeof item === &apos;object&apos; || typeof item === &apos;function&apos;) &#123;</span><br><span class="line">            return sum + 4;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum + 2;</span><br><span class="line">    &#125;, 0);</span><br><span class="line">&#125;</span><br><span class="line">let myArray = [null, &#123; &#125;, 15];  </span><br><span class="line">let myMap = new Map([ [&apos;functionKey&apos;, function() &#123;&#125;] ]);  </span><br><span class="line">let myObject = &#123; &apos;stringKey&apos;: &apos;Hello world&apos; &#125;;  </span><br><span class="line">getCollectionWeight(myArray);  // =&gt; 7 (1 + 4 + 2)  </span><br><span class="line">getCollectionWeight(myMap);    // =&gt; 4  </span><br><span class="line">getCollectionWeight(myObject); // =&gt; 2</span><br></pre></td></tr></table></figure>
+<p>The problem is clearly visible. getCollectionWeight() function is too big and looks like a black box full of surprises.</p>
+<p>这个问题很明确。getCollectionWeight()函数太大并且看起来像一个充满惊喜的黑洞</p>
+<p>You probably find it difficult to understand what it does from the first sight. And imagine a bunch of such functions in an application.</p>
+<p>当你第一眼看到他的时候你可能很难理解他到底在干嘛。想象一下在你的应用中有这样一大坨函数。</p>
+<p>When you work with such code, you waste time and effort. On the other side the quality code doesn’t make you feel uncomfortable. Quality code with small and self-explanatory functions is a pleasure to read and easy to follow.</p>
+<p>当你处理这种代码的时候，你会花费很多精力和时间。另外，这种质量的代码让人看起来很不爽。因为去阅读和理解易懂简小的高质量代码本身就是一种美的享受。</p>
+<h3 id="Step-1-Extract-weight-by-type-and-drop-magic-numbers按照参数和类型简化代码的权重"><a href="#Step-1-Extract-weight-by-type-and-drop-magic-numbers按照参数和类型简化代码的权重" class="headerlink" title="Step 1: Extract weight by type and drop magic numbers按照参数和类型简化代码的权重"></a>Step 1: Extract weight by type and drop magic numbers按照参数和类型简化代码的权重</h3><p>Now the goal is to split the big function into smaller, independent and reusable ones. The first step is to extract the code that determines the weight of a value by its type. This new function will be named getWeight().</p>
+<p>现在我们的目标是将整个大函数分割成小的独立的、可重用的函数。第一步就是分析代码将获取类型的大小值的功能分割出来，我们将整个函数命名为getWeight()</p>
+<p> Also take a look at the magic weight numbers: 1, 2 and 4. Simply reading these numbers without knowing the whole story does not provide useful information. Fortunately ES2015 allows to declare const read-only references, so you can easily create constants with meaningful names to knockout the magic numbers.</p>
+<p>另外我们来看一下整个功能大小的值：1,2,4.显然这些书和整个函数功能没有任何关系。正好ES2015提供了声明const的引用，因此可以轻松的创建一个常量去声明这些固定的值。</p>
+<p>Let’s create the small function getWeightByType() and improve getCollectionWeight() accordingly:</p>
+<p>让我们来创建一个更小的函数getWeightByType() 并优化一下getCollectionWeight() 如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"> // Code extracted into getWeightByType()</span><br><span class="line">function getWeightByType(value) &#123;  </span><br><span class="line">    const WEIGHT_NULL_UNDEFINED  = 1;</span><br><span class="line">    const WEIGHT_PRIMITIVE       = 2;</span><br><span class="line">    const WEIGHT_OBJECT_FUNCTION = 4;</span><br><span class="line">    if (value == null) &#123;</span><br><span class="line">        return WEIGHT_NULL_UNDEFINED;</span><br><span class="line">    &#125; </span><br><span class="line">    if (typeof value === &apos;object&apos; || typeof value === &apos;function&apos;) &#123;</span><br><span class="line">        return WEIGHT_OBJECT_FUNCTION;</span><br><span class="line">    &#125;</span><br><span class="line">    return WEIGHT_PRIMITIVE;</span><br><span class="line">&#125;</span><br><span class="line">function getCollectionWeight(collection) &#123;  </span><br><span class="line">    let collectionValues;</span><br><span class="line">    if (collection instanceof Array) &#123;</span><br><span class="line">        collectionValues = collection;</span><br><span class="line">    &#125; else if (collection instanceof Map) &#123;</span><br><span class="line">        collectionValues = [...collection.values()];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        collectionValues = Object.keys(collection).map(function (key) &#123;</span><br><span class="line">            return collection[key];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    return collectionValues.reduce(function(sum, item) &#123;</span><br><span class="line">        return sum + getWeightByType(item);</span><br><span class="line">    &#125;, 0);</span><br><span class="line">&#125;</span><br><span class="line">let myArray = [null, &#123; &#125;, 15];  </span><br><span class="line">let myMap = new Map([ [&apos;functionKey&apos;, function() &#123;&#125;] ]);  </span><br><span class="line">let myObject = &#123; &apos;stringKey&apos;: &apos;Hello world&apos; &#125;;  </span><br><span class="line">getCollectionWeight(myArray);  // =&gt; 7 (1 + 4 + 2)  </span><br><span class="line">getCollectionWeight(myMap);    // =&gt; 4  </span><br><span class="line">getCollectionWeight(myObject); // =&gt; 2</span><br></pre></td></tr></table></figure>
+<p>Looks better, right? </p>
+<p>看起来好一点了，对吧？</p>
+<p>getWeightByType() function is an independent component that simply determines the weight by type. And reusable, as you can execute it in any other function.</p>
+<p>getWeightByType() 这个函数独立成一个部件，能够计算出当前的类型，可复用，你可以在其他任何函数里面调用。</p>
+<p>getCollectionWeight() becomes a bit lighter.</p>
+<p>getCollectionWeight()变得轻巧了很多。</p>
+<p>WEIGHT_NULL_UNDEFINED, WEIGHT_PRIMITIVE and WEIGHT_OBJECT_FUNCTION are selfexplanatory constants that describe the type weights. You don’t have to guess what 1,2 and 4 numbers mean.</p>
+<p>三个常量的声明似乎描述的更语义化，你不需要去猜测这几个值的意思。</p>
+<h3 id="Step-2-Continue-splitting-and-make-it-extensible-继续分割，让它可扩展"><a href="#Step-2-Continue-splitting-and-make-it-extensible-继续分割，让它可扩展" class="headerlink" title="Step 2: Continue splitting and make it extensible 继续分割，让它可扩展"></a>Step 2: Continue splitting and make it extensible 继续分割，让它可扩展</h3><p>However the updated version still has drawbacks.</p>
+<p>然而修改之后的版本仍有缺陷。</p>
+<p>Imagine that you have the plan to implement the weight evaluation of a Set or even other custom collection. getCollectionWeight() will grow fast in size, because it contains the logic of collecting the values.</p>
+<p>我们可以想象我们可能要扩展计算的值的数据类型比如set或者其他自定义的集合类型，getCollectionWeight()的体积也会变大，因此我们需要一个计算集合值的逻辑。</p>
+<p>Let’s extract into separated functions the code that gathers values from maps getMapValues() and plain JavaScript objects getPlainObjectValues(). Take a look at the improved version: </p>
+<p>让我们开始分割函数吧。函数getMapValues()和getPlainObjectValues()分别计算两种值。让我们看一下分割之后的版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">function getWeightByType(value) &#123;  </span><br><span class="line">    const WEIGHT_NULL_UNDEFINED = 1;</span><br><span class="line">    const WEIGHT_PRIMITIVE = 2;</span><br><span class="line">    const WEIGHT_OBJECT_FUNCTION = 4;</span><br><span class="line">    if (value == null) &#123;</span><br><span class="line">        return WEIGHT_NULL_UNDEFINED;</span><br><span class="line">    &#125; </span><br><span class="line">    if (typeof value === &apos;object&apos; || typeof value === &apos;function&apos;) &#123;</span><br><span class="line">        return WEIGHT_OBJECT_FUNCTION;</span><br><span class="line">    &#125;</span><br><span class="line">    return WEIGHT_PRIMITIVE;</span><br><span class="line">&#125;</span><br><span class="line">// Code extracted into getMapValues()</span><br><span class="line">function getMapValues(map) &#123;  </span><br><span class="line">    return [...map.values()];</span><br><span class="line">&#125;</span><br><span class="line">// Code extracted into getPlainObjectValues()</span><br><span class="line">function getPlainObjectValues(object) &#123;  </span><br><span class="line">    return Object.keys(object).map(function (key) &#123;</span><br><span class="line">        return object[key];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">function getCollectionWeight(collection) &#123;  </span><br><span class="line">    let collectionValues;</span><br><span class="line">    if (collection instanceof Array) &#123;</span><br><span class="line">        collectionValues = collection;</span><br><span class="line">    &#125; else if (collection instanceof Map) &#123;</span><br><span class="line">        collectionValues = getMapValues(collection);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        collectionValues = getPlainObjectValues(collection);</span><br><span class="line">    &#125;</span><br><span class="line">    return collectionValues.reduce(function(sum, item) &#123;</span><br><span class="line">        return sum + getWeightByType(item);</span><br><span class="line">    &#125;, 0);</span><br><span class="line">&#125;</span><br><span class="line">let myArray = [null, &#123; &#125;, 15];  </span><br><span class="line">let myMap = new Map([ [&apos;functionKey&apos;, function() &#123;&#125;] ]);  </span><br><span class="line">let myObject = &#123; &apos;stringKey&apos;: &apos;Hello world&apos; &#125;;  </span><br><span class="line">getCollectionWeight(myArray);  // =&gt; 7 (1 + 4 + 2)  </span><br><span class="line">getCollectionWeight(myMap);    // =&gt; 4  </span><br><span class="line">getCollectionWeight(myObject); // =&gt; 2</span><br></pre></td></tr></table></figure>
+<p>If you read getCollectionWeight() now, you ﬁnd much easier ﬁgure out what it does. It looks like an interesting story.</p>
+<p>当你现在再来阅读getCollectionWeight()这个函数的时候，你会发现你能轻而易举的发现函数到底在做什么。非常有趣的变化。</p>
+<p>Every function is obvious and straightforward. You don’t waste time digging to realize what the code does. That’s how the clean code should be.</p>
+<p>每一个函数都清晰直观，你不用花时间去研究他在做什么，这就是精干的代码应该有的样子。</p>
+<h3 id="Step-3-Never-stop-to-improve不要停止重构"><a href="#Step-3-Never-stop-to-improve不要停止重构" class="headerlink" title="Step 3: Never stop to improve不要停止重构"></a>Step 3: Never stop to improve不要停止重构</h3><p>Even at this step you have a lot of space for improvement! </p>
+<p>每一个逻辑都有优化的空间。</p>
+<p>You can create getCollectionValues() as a separated function, which contains the if/else statements to differentiate the collection types:</p>
+<p>你可以创建一个函数 getCollectionValues()作为独立的模块。用来通过判定语句区分不同的数据类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function getCollectionValues(collection) &#123;  </span><br><span class="line">    if (collection instanceof Array) &#123;</span><br><span class="line">        return collection;</span><br><span class="line">    &#125;</span><br><span class="line">    if (collection instanceof Map) &#123;</span><br><span class="line">        return getMapValues(collection);</span><br><span class="line">    &#125;</span><br><span class="line">    return getPlainObjectValues(collection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then getCollectionWeight() would become truly plain, because the only thing it needs to do is: get the collection values getCollectionValues() and apply the sum reducer on it.</p>
+<p>getCollectionWeight()也因为只需要做一件事情而变得真正的纯粹：获取getCollectionValues()函数返回的值，并将其累加起来<br>。<br>You can also create a separated reducer function: </p>
+<p>你也可以创建一个迭代函数循环的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function reduceWeightSum(sum, item) &#123;  </span><br><span class="line">    return sum + getWeightByType(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Because ideally getCollectionWeight() should not define functions.</p>
+<p>因为其实理想的getCollectionWeight()函数内是不应该去定义任何函数的。</p>
+<p>In the end the initial big function is transformed into the following small functions:</p>
+<p>最后我们来看，最初这个庞大的函数被我们转换成了一个个小函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">function getWeightByType(value) &#123;  </span><br><span class="line">    const WEIGHT_NULL_UNDEFINED = 1;</span><br><span class="line">    const WEIGHT_PRIMITIVE = 2;</span><br><span class="line">    const WEIGHT_OBJECT_FUNCTION = 4;</span><br><span class="line">    if (value == null) &#123;</span><br><span class="line">        return WEIGHT_NULL_UNDEFINED;</span><br><span class="line">    &#125; </span><br><span class="line">    if (typeof value === &apos;object&apos; || typeof value === &apos;function&apos;) &#123;</span><br><span class="line">        return WEIGHT_OBJECT_FUNCTION;</span><br><span class="line">    &#125;</span><br><span class="line">    return WEIGHT_PRIMITIVE;</span><br><span class="line">&#125;</span><br><span class="line">function getMapValues(map) &#123;  </span><br><span class="line">    return [...map.values()];</span><br><span class="line">&#125;</span><br><span class="line">function getPlainObjectValues(object) &#123;  </span><br><span class="line">    return Object.keys(object).map(function (key) &#123;</span><br><span class="line">        return object[key];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">function getCollectionValues(collection) &#123;  </span><br><span class="line">    if (collection instanceof Array) &#123;</span><br><span class="line">        return collection;</span><br><span class="line">    &#125;</span><br><span class="line">    if (collection instanceof Map) &#123;</span><br><span class="line">        return getMapValues(collection);</span><br><span class="line">    &#125;</span><br><span class="line">    return getPlainObjectValues(collection);</span><br><span class="line">&#125;</span><br><span class="line">function reduceWeightSum(sum, item) &#123;  </span><br><span class="line">    return sum + getWeightByType(item);</span><br><span class="line">&#125;</span><br><span class="line">function getCollectionWeight(collection) &#123;  </span><br><span class="line">    return getCollectionValues(collection).reduce(reduceWeightSum, 0);</span><br><span class="line">&#125;</span><br><span class="line">let myArray = [null, &#123; &#125;, 15];  </span><br><span class="line">let myMap = new Map([ [&apos;functionKey&apos;, function() &#123;&#125;] ]);  </span><br><span class="line">let myObject = &#123; &apos;stringKey&apos;: &apos;Hello world&apos; &#125;;  </span><br><span class="line">getCollectionWeight(myArray);  // =&gt; 7 (1 + 4 + 2)  </span><br><span class="line">getCollectionWeight(myMap);    // =&gt; 4  </span><br><span class="line">getCollectionWeight(myObject); // =&gt; 2</span><br></pre></td></tr></table></figure>
+<p>That’s the art of writing small and plain functions!</p>
+<p>这就是编写小而单纯的函数的艺术！</p>
+<p>After all these code quality optimizations, you get a bunch of nice benefits:</p>
+<p>通过以上所有的这些代码质量的优化，你可以收获很多益处：</p>
+<ul>
+<li>The readability of getCollectionWeight() increased by self-explanatory code </li>
+<li>The size of getCollectionWeight() reduced considerable getCollectionWeight() function is now protected from fast growth if you plan to implement the weight calculation of other collection types </li>
+<li>The extracted functions are now decoupled and reusable components. Your colleague may ask you to import these nice functions into another project: and you can easily do that If accidentally a function generates an error, the call stack will be more precisebecause it contains the function names. </li>
+<li>Almost instantly you could determine the function that makes problems The split functions are much easier to test and reach a high level of code coverage. Instead of testing one big function with all possible scenarios, you can structure your tests and verify each small function separately       </li>
+<li>You can benefit from CommonJS or ES2015 modules format. Create from extracted functions separated modules. This makes your project files lightweight and structured.</li>
+<li>自解释代码使函数getCollectionWeight()的可读性大大增强了<ul>
+<li>函数getCollectionWeight()的体积明显减小了</li>
+<li>当你添加判定值的数量的时候，函数getCollectionWeight()保持稳定的增长的速度。</li>
+<li>分离出来的代码成为具有低耦合性和可复用性的组件。你的同事或许会请求你将这些非常棒的小组件应用到其他项目中去，这是轻而易举就可以实现的。</li>
+<li>如果一旦有代码报错，报错堆栈更清晰因为他包含了函数的具体名称。你可以轻而易举的判定出出错的部分。分割出来的代码更易测试并且可以达到一个很高的测试覆盖率，从而使代码的可测试性提高。相比于这个，测试巨大的函数是很糟糕的。你可以为每一个函数构造测试并且独立的进行验证工作。</li>
+<li>你可以按照CommonJS或者ES2015的模式去构造你的函数，将其分割成独立的小函数。这会使你的项目文件变得更加轻量和更有结构。<br>These advantages help you survive in the complexity of the applications.<br>这些优点将你从复杂的应用中拯救出来。</li>
+</ul>
+</li>
+</ul>
+<p>As a general rule, your functions should not be longer than 20 lines of code. Smaller - better.</p>
+<p>通常的规则是你的函数不应该超过20行，并且越小越好。</p>
+<p>I think now you want to ask me a reasonable question: “I don’t want to create functions for each line of code. Is there a criteria when I should stop splitting?” This is a subject of the next chapter.</p>
+<p>我想你现在有一个情理之中的问题想要问我：“让我为每一个函数写一行代码我是极不情愿的。请问对于拆分的原则有什么标准么？”这将会是我们下一个环节要解答的问题。</p>
+<h3 id="2-Functions-should-be-plain-函数功能要单一"><a href="#2-Functions-should-be-plain-函数功能要单一" class="headerlink" title="2. Functions should be plain   函数功能要单一"></a>2. Functions should be plain   函数功能要单一</h3><p>Let’s relax a bit and think what is actually a software application?</p>
+<p>让我们稍微放松一下然后仔细想想应用软件的实质是什么？</p>
+<p>Every application is implementing a list of requirements. The role of developer is to divide these requirements into small executable components (namespaces, classes, functions, code blocks) that do a well determined task.</p>
+<p>每个应用在本质上都是对一系列需求的实现，而开发者所扮演的角色就是将这些需求拆分成更小的可执行的可以更好的完成自身任务的模块（命名空间，类，函数，代码块）</p>
+<p>A component consists of other smaller components. If you want to code a component, you need to create it from components at only one level down in abstraction.</p>
+<p>一个组件包含了其他更小的组件们。如果你想编写编写其中一个组件，你需要将他从其他你创作的同一级别的组件中中抽象出来。</p>
+<p>In other words, what you need is to decompose a function into smaller steps, but keep these steps at the same, one step down, level of abstraction. This is important because it makes the function plain and implies to “do one thing and do it well”.</p>
+<p>换句话说，你需要做的就是将这些功能拆分成更小的步骤，但是需要保证这些小步骤是同样的，同一级别的，同等水平的抽象。这是非常重要的因为只有这样你才能使你的函数功能单一并且意味着你成功实现了“做一件事情并且把它做好”。</p>
+<p>Why is this necessary? Because plain functions are obvious. Obvious means easy to read and modify.</p>
+<p>说了这么多，为什么功能单一的代码是很重要的呢？因为清晰的代码的功能是显而易见的。而显而易见则意味着代码的易读性和易修改性。</p>
+<p>Let’s follow an example. Suppose you want to implement a function that keeps onlyprime numbers (2, 3, 5, 7, 11, etc) in an array, removing non prime ones (1, 4, 6, 8, etc). The function is invoked this way:</p>
+<p>让我们再来看一个例子。假设你想实现一个函数：去除数组中的合数（例如1,4,6,8等）而只保留其中的质数（例如2,3,5,7,11等等）。这个函数将会被这样调用：</p>
+<p><code>getOnlyPrime([2, 3, 4, 5, 6, 8, 11]); // =&gt; [2, 3, 5, 11]</code></p>
+<p>What are steps at one level down in abstraction to implement the functiongetOnlyPrime()? Let’s formulate this way:</p>
+<p>那么函数getOnlyPrime()的实现在同一个抽象级别的步骤有多少呢？让我们一起用下面这种方式一步一步来实现;</p>
+<p>To implement getOnlyPrime() function, filter the array of numbers using isPrime()function.</p>
+<p>为了实现函数getOnlyPrime()，我们首先使用isPrime()函数来对数组中的数据进行过滤</p>
+<p>Simply, just apply a filter function isPrime() over the array of numbers.</p>
+<p>简单来说，就是创建一个过滤器函数isPrime() 对数组成员进行过滤。</p>
+<p>Do you need to implement the details of isPrime() at this level? No, becausegetOnlyPrime() function would have steps from different level of abstractions. The function would take too much responsibility.</p>
+<p>你需要的做的只是在这个抽象级别上实现isPrime() 的细节？不，你错了。因为getOnlyPrime()函数会有很多不同级别的抽象。这个函数包含太多的任务在身。</p>
+<p>Having the plain idea in mind, let’s implement the body of getOnlyPrime() function:</p>
+<p>在你的头脑中想象一下如何让这个函数变的单一。接下来让我们一起来实现getOnlyPrime()这个函数的主体部分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function getOnlyPrime(numbers) &#123;  </span><br><span class="line">        return numbers.filter(isPrime);</span><br><span class="line">&#125;</span><br><span class="line">getOnlyPrime([2, 3, 4, 5, 6, 8, 11]); // =&gt; [2, 3, 5, 11]</span><br></pre></td></tr></table></figure>
+<p>As you can see, getOnlyPrime() is plain and simple. It contains steps from a single level of abstraction: .filter() array method and isPrime().</p>
+<p>正如你所看到的一样，getOnlyPrime()这个函数是短小而又单一的。它包含了一个单一抽象级别的函数:.filter()数组方法isPrime（）</p>
+<p>Now is the time move one level down in abstraction.</p>
+<p>现在是时候再降低一下函数的抽象级别了。</p>
+<p>The array method .filter() is provided by JavaScript engine and use it as is. Of course the standard describes exactly what it does.</p>
+<p> .filter()这个方法提供了一个原生的javascript引擎。当然标准的描述是他做了什么。</p>
+<p>Now you can detail into how isPrime() should be implemented:</p>
+<p>现在你可以具体研究 isPrime()应该怎样被实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">To implement isPrime() function that checks if a number n is prime, verify if any number from 2 to Math.sqrt(n) evenly divides n.</span><br><span class="line">实现isPrime()这个函数就是要检查一个数n是否是素数，依次判断从2开始到√n之间的任何一个整数能否被n整除。</span><br></pre></td></tr></table></figure></p>
+<p>Having this algorithm (yet not efficient, but used for simplicity), let’s code isPrime()function:</p>
+<p>使用已有的算法来实现isPrime()函数（虽然效率不高，但是调用却很简单）。让我们一起来编写它的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function isPrime(number) &#123;  </span><br><span class="line">    if (number === 3 || number === 2) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    if (number === 1) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    for (let divisor = 2; divisor &lt;= Math.sqrt(number); divisor++) &#123;</span><br><span class="line">        if (number % divisor === 0) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line">function getOnlyPrime(numbers) &#123;  </span><br><span class="line">    return numbers.filter(isPrime);</span><br><span class="line">&#125;</span><br><span class="line">getOnlyPrime([2, 3, 4, 5, 6, 8, 11]); // =&gt; [2, 3, 5, 11]</span><br></pre></td></tr></table></figure>
+<p>getOnlyPrime() is small and plain. It has only strictly necessary steps from one level down in abstraction.</p>
+<p>getOnlyPrime()是小而单一的。它只有一个小于一个抽象级别的必要的步骤。</p>
+<p>The readability of complex functions can be much improved if you follow the rule of making them plain. Having each level of abstraction coded precisely prevents the creation of big chunks of unmaintainable code.</p>
+<p>如果你能按照这样的规则去使自己的代码的功能变得单一，那个抽象复杂的函数的可读性将会被大大的提高。对每一个抽象级别进行编码会很好的防止大的可维护性差的代码的产生。</p>
+<h3 id="3-Use-concise-function-names使用简洁清晰的函数命名"><a href="#3-Use-concise-function-names使用简洁清晰的函数命名" class="headerlink" title="3. Use concise function names使用简洁清晰的函数命名"></a>3. Use concise function names使用简洁清晰的函数命名</h3><p>Function names should be concise: no more and no less. Ideally the name suggests clearly what the function does, without the necessity to dive into the implementation details.</p>
+<p>函数命名应该是简洁明了的：不多不少。理想的命名应该是可以清楚地告诉人们这个函数实现了怎样的功能，没有必要再将它拆分成更小的细节去实现。</p>
+<p>For function names use camel case format that starts with a lowercase letter: addItem(),saveToStore() or getFirstName().</p>
+<p>函数命名一般会使用驼峰命名法——以小写字母开头，例如：addItem(),saveToStore() or    getFirstName().</p>
+<p>Because functions are actions, the name should contain at least one verb. For example deletePage(), verifyCredentials(). To get or set a property, use the standard set and getprefixes: getLastName() or setLastName().</p>
+<p>因为函数是一种功能的实现，所以命名至少应该是包含一个动词。例如deletePage(), verifyCredentials().如果是为了设置或者是获取属性值，那个可以使用标准的set和get作为前缀：getLastName() 或者setLastName().</p>
+<p>Avoid in the production code misleading names like foo(), bar(), a(), fun(), etc. Such names have no meaning.</p>
+<p>并且要防止使用类似 foo(), bar(), a(), fun()等等的命名将我们带入歧途。这样的命名是无意义的。</p>
+<p>If functions are small and plain, names are concise: the code is read as a wonderful prose.<br>如果你的函数是小而单一并且命名简洁的，这意味着读你的代码就像是在读一篇美妙的散文一样令人赏心悦目。</p>
+<h3 id="4-Conclusion结论"><a href="#4-Conclusion结论" class="headerlink" title="4. Conclusion结论"></a>4. Conclusion结论</h3><p>Certainly the provided examples are quite simple. Real world applications are more complex. You may complain that writing plain functions, with only one level down in abstraction, is a tedious task. But it’s not that complicated if your practice right from the start of the project.</p>
+<p>当然啦，上文提到的例子都是相当简单的。真实的应用都是相当复杂的。或许你会抱怨，这样将在同一个抽象级别的函数写的单一是一件很枯燥乏味的工作。但是如果你从开始你的项目的时候就正确的练习那将一点儿都不困难。</p>
+<p>If an application already has functions with too much responsibility, you may find hard to reorganize the code. And in many cases impossible to do in a reasonable amount of time. At least start with small: extract something you can.</p>
+<p>如果一个应用已经有了太多复杂的函数，你或许会发现去重构这个代码是很困难的。并且在很多情况下重构这些代码会花去超出预期的时间。至少，从小功能开始：拆分那些你可以拆分的。</p>
+<p>Of course the correct solution is to implement the application correctly from the start. And dedicate time not only to implementation, but also to a correct structure of your functions: as suggested make them small and plain.</p>
+<p>当然最好的解决方法就是你从项目最开始就正确的实现这些应用。其实你花费时间最多的不光是如何实现这些功能，还有就是你的函数有没有一个正确的结构：就像我所建议的，让你的代码短小精悍。</p>
+<p><code>Measure seven times, cut once.</code></p>
+<p>ES2015 implements a nice module system, that clearly suggest that small functions are a good practice.</p>
+<p>ES2015定义了一个很棒的模块系统，其中清楚地建议我们实现小功能是一个很好的练习方式。</p>
+<p>Just remember that clean and organized code always deserves investing time. You may find it hard to do. You may need a lot of practice. You may come back and modify a function multiple times.</p>
+<p>你只需要记住清晰有条理的代码总是值得我们花费更多的时间。或许开始的时候你会觉得这很困难，但是或许你需要的只是多加练习。或许你会有很多次回过头来看你之前编写的代码并且重构他们的一个功能很多次。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Nothing can be worse than messy code.</span><br><span class="line">没有什么能比糟糕的代码更糟糕的了。</span><br></pre></td></tr></table></figure>
+<p>What practice do you use to make the code organized? Feel free to write a comment bellow!</p>
+<p>在你的日常编码过程中你是如何练习把你的代码写的调理清晰的呢？放轻松，在下面留下你的留言吧~！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/09/12/zbj180227/">The art of writing small and plain functions</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Gentlelynn</a></p>
+        <p><span>发布时间:</span>2016-09-12, 20:57:10</p>
+        <p><span>最后更新:</span>2018-02-27, 21:01:23</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/09/12/zbj180227/" title="The art of writing small and plain functions">http://yoursite.com/2016/09/12/zbj180227/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/09/12/zbj180227/　　作者: Gentlelynn" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/07/20/20170720/">
+                    《坦白书》读书笔记
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/08/27/180227blog/">
+                    hexo+github博客搭建
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Functions-should-be-small-Really-small-函数要小且足够的小"><span class="toc-number">1.</span> <span class="toc-text">Functions should be small. Really small 函数要小且足够的小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-0-The-initial-big-function-原始的庞大函数"><span class="toc-number">2.</span> <span class="toc-text">Step 0: The initial big function 原始的庞大函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Extract-weight-by-type-and-drop-magic-numbers按照参数和类型简化代码的权重"><span class="toc-number">3.</span> <span class="toc-text">Step 1: Extract weight by type and drop magic numbers按照参数和类型简化代码的权重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Continue-splitting-and-make-it-extensible-继续分割，让它可扩展"><span class="toc-number">4.</span> <span class="toc-text">Step 2: Continue splitting and make it extensible 继续分割，让它可扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Never-stop-to-improve不要停止重构"><span class="toc-number">5.</span> <span class="toc-text">Step 3: Never stop to improve不要停止重构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Functions-should-be-plain-函数功能要单一"><span class="toc-number">6.</span> <span class="toc-text">2. Functions should be plain   函数功能要单一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Use-concise-function-names使用简洁清晰的函数命名"><span class="toc-number">7.</span> <span class="toc-text">3. Use concise function names使用简洁清晰的函数命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Conclusion结论"><span class="toc-number">8.</span> <span class="toc-text">4. Conclusion结论</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"The art of writing small and plain functions　| For my cat　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/07/20/20170720/" title="上一篇: 《坦白书》读书笔记">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/08/27/180227blog/" title="下一篇: hexo+github博客搭建">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/sentences/">那些我觉得很美很美的句子</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/180227next/">nextjs学习笔记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/29/180227html/">菜鸟教程——HTML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/180102/">我想和你好好的</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/20170720/">《坦白书》读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/12/zbj180227/">The art of writing small and plain functions</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/180227blog/">hexo+github博客搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/mycat/">我的猫</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/30/myself/">个人原创片段</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 Gentlelynn
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
