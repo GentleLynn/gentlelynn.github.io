@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Gentlelynn" />
+
+
+
+<meta name="description" content="记录一下我曾经见到过的技术名词，当然了也不是每个都会记录下来，而且有些时间已经很久远了，放在这就当复习啦～">
+<meta name="keywords" content="技术名词">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录一些我可能遇见的技术名词">
+<meta property="og:url" content="https://gentlelynn.github.io/2017/03/03/20170303/index.html">
+<meta property="og:site_name" content="For my cat">
+<meta property="og:description" content="记录一下我曾经见到过的技术名词，当然了也不是每个都会记录下来，而且有些时间已经很久远了，放在这就当复习啦～">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-16T11:02:30.478Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记录一些我可能遇见的技术名词">
+<meta name="twitter:description" content="记录一下我曾经见到过的技术名词，当然了也不是每个都会记录下来，而且有些时间已经很久远了，放在这就当复习啦～">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="For my cat" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>记录一些我可能遇见的技术名词 | For my cat</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Gentlelynn</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-html/">css html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/express/">express</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/">html css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-html-css/">js html css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextjs/">nextjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术名词/">技术名词</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gentlelynn</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Gentlelynn</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20170303" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/03/20170303/" class="article-date">
+      <time datetime="2017-03-03T10:56:58.000Z" itemprop="datePublished">2017-03-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记录一些我可能遇见的技术名词
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术名词/">技术名词</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>     记录一下我曾经见到过的技术名词，当然了也不是每个都会记录下来，而且有些时间已经很久远了，放在这就当复习啦～<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h3 id="1-Sass"><a href="#1-Sass" class="headerlink" title="1.Sass"></a>1.Sass</h3><p>software-as-a-service软件即服务，一种通过internet提供软件的模式，厂商将应用软件统一部署在自己的服务器上，客户可以根据自己的需求通过互联网向厂商订购所需要的应用软件和服务</p>
+<p>lass（infrastructure-as-service基础即服务）是卖笔记本电脑的，pass（platform-as-service平台即服务）是卖操作系统的（比如windows），sass是卖应用程序的（比如office等办公软件，普通用户能直接使用的东西）</p>
+<h3 id="2-whatwg"><a href="#2-whatwg" class="headerlink" title="2.whatwg"></a>2.whatwg</h3><p>web超文本应用技术工作组(web hypertext application technology working group)</p>
+<h3 id="3-w3c"><a href="#3-w3c" class="headerlink" title="3 w3c"></a>3 w3c</h3><p>万维网联盟(world wide web consortium)</p>
+<h3 id="4-spa"><a href="#4-spa" class="headerlink" title="4.spa"></a>4.spa</h3><p>simple page applications单页面应用</p>
+<h3 id="5-富应用技术"><a href="#5-富应用技术" class="headerlink" title="5.富应用技术"></a>5.富应用技术</h3><ul>
+<li>adobe flex<br>由macromedia公司在2004年3月发布，基于其专有的macromedia flash平台，支持富应用开发和部署的技术组合。</li>
+<li>javafx 由sun公司开发的一种声明性的、静态类型脚本语言，开发富互联网应用程序。</li>
+<li>silverlight 融合了微软多种技术的web呈现技术，提供了一套开发框架，并通过使用基于向量的图像图层技术，支持任何尺寸图像的无缝整合，对基于asp.net、ajax在内的web开发环境实现了无缝对接。<h3 id="6-webGL"><a href="#6-webGL" class="headerlink" title="6.webGL"></a>6.webGL</h3>是一种3d绘图标准，这种绘图技术标准允许把javascript和openGL(open graphics library是指定义了一个跨编程语言、跨平台的编程借口规格的专业的图形程序接口。它用于三维图像，是一个功能强大调用方便的底层图形库) es2.0结合在一起，通过增加openGL ES2.0的一个javascript绑定，webGL可以为html5 canvas提供硬件3d加速渲染，这样web开发人员久可以借助系统显卡来在浏览器中更加流畅的展示3d场景和模型了，还能创建复杂的导航和数据视觉化。<h3 id="7-OLAP-联机分析处理"><a href="#7-OLAP-联机分析处理" class="headerlink" title="7.OLAP(联机分析处理)"></a>7.OLAP(联机分析处理)</h3>联机分析处理OLAP是一种软件技术，它使分析人员能够迅速、一致、交互地从各个方面观察信息，以达到深入理解数据的目的。它具有FASMI(Fast Analysis of Shared Multidimensional Information)，即共享多维信息的快速分析的特征。其中F是快速性(Fast)，指系统能在数秒内对用户的多数分析要求做出反应；A是可分析性(Analysis)，指用户无需编程就可以定义新的专门计算，将其作为分析的一部 分，并以用户所希望的方式给出报告；M是多维性(Multi—dimensional)，指提供对数据分析的多维视图和分析；I是信息性(Information)，指能及时获得信息，并且管理大容量信息。许多企业利用关系型数据库来存储和管理业务数据，并建立相应的应用系统来支持日常的业务运作。这种应用以支持业务处理为主要目的，被称为联机事务处理(On line Transaction Processing，OLTP)应用，它所存储的数据被称为操作数据或者业务数据。<h3 id="8-OLTP-联机事务处理过程"><a href="#8-OLTP-联机事务处理过程" class="headerlink" title="8.OLTP(联机事务处理过程)"></a>8.OLTP(联机事务处理过程)</h3>On-Line Transaction Processing联机事务处理过程(OLTP)<br>也称为面向交易的处理过程，其基本特征是前台接收的用户数据可以立即传送到计算中心进行处理，并在很短的时间内给出处理结果，是对用户操作快速响应的方式之一。<h3 id="9-ElasticSearch"><a href="#9-ElasticSearch" class="headerlink" title="9.ElasticSearch"></a>9.ElasticSearch</h3>ElasticSearch是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。Elasticsearch是用Java开发的，并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。使用JSON通过HTTP来索引数据。</li>
+<li>cluster<br>代表一个集群，集群中有多个节点，其中有一个为主节点，这个主节点是可以通过选举产生的，主从节点是对于集群内部来说的。es的一个概念就是去中心化，字面上理解就是无中心节点，这是对于集群外部来说的，因为从外部来看es集群，在逻辑上是个整体，你与任何一个节点的通信和与整个es集群通信是等价的。</li>
+<li>replicas<br>代表索引副本，es可以设置多个索引的副本，副本的作用一是提高系统的容错性，当某个节点某个分片损坏或丢失时可以从副本中恢复。二是提高es的查询效率，es会自动对搜索请求进行负载均衡</li>
+<li>elasticsearch-hadoop<br>是一个深度集成Hadoop和ElasticSearch的项目，也是ES官方来维护的一个子项目，通过实现Hadoop和ES之间的输入输出，可以在Hadoop里面对ES集群的数据进行读取和写入，充分发挥Map-Reduce并行处理的优势，为Hadoop数据带来实时搜索的可能。 </li>
+<li>Apache Spark 是专为大规模数据处理而设计的快速通用的计算引擎。一种与 Hadoop 相似的开源集群计算环境，Spark是UC Berkeley AMP lab (加州大学伯克利分校的AMP实验室)所开源的类Hadoop MapReduce的通用并行框架，拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的MapReduce的算法。</li>
+<li>Chef是IT自动化平台，可让客户创建、部署、变更和管理基础设施运行时环境和应用。Chef是平台无关的，可以部署到云端、本地或作为虚机（VM）。Chef也被称为部署自动化工具和DevOps使能者，它是一款可以为不同规模企业提供许多集成选项的产品。<h3 id="10-BSD协议"><a href="#10-BSD协议" class="headerlink" title="10.BSD协议"></a>10.BSD协议</h3>berkeley software distribution伯克利软件发行版，是一整套软件发行版的统称，是自由软件中使用最广泛的许可证之一。该协议可以自由的使用并且修改源码，也可以将修改后的代码作为开源或者专利软件再发布。<h3 id="11-SQLite"><a href="#11-SQLite" class="headerlink" title="11.SQLite"></a>11.SQLite</h3>一种轻型的数据库，遵守ACID的关联式数据库管理系统，主要被用于嵌入式产品，占用资源非常低，在嵌入设备中，可能只需要几百k的内存就够了。<h3 id="12-面包屑导航"><a href="#12-面包屑导航" class="headerlink" title="12.面包屑导航"></a>12.面包屑导航</h3>面包屑导航(BreadcrumbNavigation)这个概念来自童话故事”汉赛尔和格莱特”，当汉赛尔和格莱特穿过森林时，不小心迷路了，但是他们发现在沿途走过的地方都撒下了面包屑，让这些面包屑来帮助他们找到回家的路。所以，面包屑导航的作用是告诉访问者他们目前在网站中的位置以及如何返回。格式类似主页 &gt;栏目页&gt;文章页面<h3 id="13-ruby-on-rails"><a href="#13-ruby-on-rails" class="headerlink" title="13.ruby on rails"></a>13.ruby on rails</h3>Ruby on Rails 是一个可以使你开发、部署、维护 web 应用程序变得简单的框架。<h3 id="14-express"><a href="#14-express" class="headerlink" title="14.express"></a>14.express</h3>express帮助创建各种web应用，丰富的http工具以及来自connect框架的中间件随取随用，创建强健友好的api。<h3 id="15-高内聚低耦合性"><a href="#15-高内聚低耦合性" class="headerlink" title="15.高内聚低耦合性"></a>15.高内聚低耦合性</h3>组件划分原则：</li>
+<li>高内聚:把逻辑紧密相关的内容放在一个组件内。</li>
+<li>低耦合:不同组件间的依赖关系要尽量弱化，也就是每个组件都保持独立。<h3 id="16-pwa"><a href="#16-pwa" class="headerlink" title="16.pwa"></a>16.pwa</h3>progressive web applications（<a href="https://juejin.im/entry/5a1c394a5188255851326da5）" target="_blank" rel="noopener">https://juejin.im/entry/5a1c394a5188255851326da5）</a>  渐进式网页应用程序<br><a href="http://blog.csdn.net/qq_19238139/article/details/77531191" target="_blank" rel="noopener">http://blog.csdn.net/qq_19238139/article/details/77531191</a><h3 id="17-eslint"><a href="#17-eslint" class="headerlink" title="17.eslint"></a>17.eslint</h3>EsLint帮助我们检查Javascript编程时的语法错误。比如：在Javascript应用中，你很难找到你漏泄的变量或者方法。EsLint能够帮助我们分析JS代码，找到bug并确保一定程度的JS语法书写的正确性。<h3 id="18-NPM"><a href="#18-NPM" class="headerlink" title="18.NPM"></a>18.NPM</h3><a href="https://segmentfault.com/a/1190000008634604" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008634604</a></li>
+</ul>
+<p>NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：</p>
+<ul>
+<li>允许用户从NPM服务器下载别人编写的第三方包到本地使用。</li>
+<li>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。</li>
+<li>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。<h3 id="19-git-hook"><a href="#19-git-hook" class="headerlink" title="19.git hook"></a>19.git hook</h3>Git可以定制一些钩子，放在git/hooks/目录下。这些钩子可以在特定的情况下被执行，分为Client端的钩子和Server端的钩子。Client端钩子被operation触发，比如commit，merge等，Server端钩子被网络动作触发，比如pushed commits。<h3 id="20-用-husky-和-lint-staged-构建超溜的代码检查工作流"><a href="#20-用-husky-和-lint-staged-构建超溜的代码检查工作流" class="headerlink" title="20.用 husky 和 lint-staged 构建超溜的代码检查工作流"></a>20.用 husky 和 lint-staged 构建超溜的代码检查工作流</h3><a href="https://segmentfault.com/a/1190000009546913" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009546913</a></li>
+</ul>
+<p>为了缩短 Lint 的反馈链条，把 Lint 挪到本地是最有效的办法。常见做法是使用 husky 或者 pre-commit 在本地提交之前做 Lint。</p>
+<h3 id="21-prettier代码格式规范化工具"><a href="#21-prettier代码格式规范化工具" class="headerlink" title="21.prettier代码格式规范化工具"></a>21.prettier代码格式规范化工具</h3><p><a href="http://tech.it168.com/a2017/0420/3116/000003116939.shtml" target="_blank" rel="noopener">http://tech.it168.com/a2017/0420/3116/000003116939.shtml</a></p>
+<h3 id="22-airbnbJavaScript规范"><a href="#22-airbnbJavaScript规范" class="headerlink" title="22.airbnbJavaScript规范"></a>22.airbnbJavaScript规范</h3><p><a href="https://github.com/yuche/javascript" target="_blank" rel="noopener">https://github.com/yuche/javascript</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/03/20170303/">记录一些我可能遇见的技术名词</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Gentlelynn</a></p>
+        <p><span>发布时间:</span>2017-03-03, 18:56:58</p>
+        <p><span>最后更新:</span>2018-03-16, 19:02:30</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/03/20170303/" title="记录一些我可能遇见的技术名词">https://gentlelynn.github.io/2017/03/03/20170303/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://gentlelynn.github.io/2017/03/03/20170303/　　作者: Gentlelynn" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/07/20/20170720/">
+                    《坦白书》读书笔记
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/12/zbj180227/">
+                    The art of writing small and plain functions
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Sass"><span class="toc-number">1.</span> <span class="toc-text">1.Sass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-whatwg"><span class="toc-number">2.</span> <span class="toc-text">2.whatwg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-w3c"><span class="toc-number">3.</span> <span class="toc-text">3 w3c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-spa"><span class="toc-number">4.</span> <span class="toc-text">4.spa</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-富应用技术"><span class="toc-number">5.</span> <span class="toc-text">5.富应用技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-webGL"><span class="toc-number">6.</span> <span class="toc-text">6.webGL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-OLAP-联机分析处理"><span class="toc-number">7.</span> <span class="toc-text">7.OLAP(联机分析处理)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-OLTP-联机事务处理过程"><span class="toc-number">8.</span> <span class="toc-text">8.OLTP(联机事务处理过程)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-ElasticSearch"><span class="toc-number">9.</span> <span class="toc-text">9.ElasticSearch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-BSD协议"><span class="toc-number">10.</span> <span class="toc-text">10.BSD协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-SQLite"><span class="toc-number">11.</span> <span class="toc-text">11.SQLite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-面包屑导航"><span class="toc-number">12.</span> <span class="toc-text">12.面包屑导航</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-ruby-on-rails"><span class="toc-number">13.</span> <span class="toc-text">13.ruby on rails</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-express"><span class="toc-number">14.</span> <span class="toc-text">14.express</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-高内聚低耦合性"><span class="toc-number">15.</span> <span class="toc-text">15.高内聚低耦合性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-pwa"><span class="toc-number">16.</span> <span class="toc-text">16.pwa</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-eslint"><span class="toc-number">17.</span> <span class="toc-text">17.eslint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-NPM"><span class="toc-number">18.</span> <span class="toc-text">18.NPM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-git-hook"><span class="toc-number">19.</span> <span class="toc-text">19.git hook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-用-husky-和-lint-staged-构建超溜的代码检查工作流"><span class="toc-number">20.</span> <span class="toc-text">20.用 husky 和 lint-staged 构建超溜的代码检查工作流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-prettier代码格式规范化工具"><span class="toc-number">21.</span> <span class="toc-text">21.prettier代码格式规范化工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-airbnbJavaScript规范"><span class="toc-number">22.</span> <span class="toc-text">22.airbnbJavaScript规范</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"记录一些我可能遇见的技术名词　| For my cat　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/03/20170303/" data-title="记录一些我可能遇见的技术名词" data-url="https://gentlelynn.github.io/2017/03/03/20170303/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/07/20/20170720/" title="上一篇: 《坦白书》读书笔记">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/12/zbj180227/" title="下一篇: The art of writing small and plain functions">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/180313resume1/">这两天做简历时遇到的问题及解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/06/20180316float/">前端工程师面试第三弹--浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/03/20180303/">前端工程师面试第二弹——布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/03/0303get/">一个程序媛的心路历程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/20170302cen/">前端工程师面试第一弹——水平居中&垂直居中&水平垂直都居中</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/01/20180316rew/">前端工程师面试总结——心理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/28/180228/">由两个span元素引发的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/sentences/">那些我觉得很美很美的句子</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/180227next/">nextjs学习笔记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/29/180227html/">菜鸟教程——HTML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/20171204/">《ThinkinJava》读书笔记就一篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/180102/">我想和你好好的</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/18/20180110data1/">大话数据结构读书笔记(一)——冒泡排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/20171120express/">express的安装和使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/20170826/">胆小的戏精女——独立回家</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/20170720/">《坦白书》读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/03/20170303/">记录一些我可能遇见的技术名词</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/12/zbj180227/">The art of writing small and plain functions</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/180227blog/">hexo+github博客搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/mycat/">我的猫</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/30/myself/">个人原创片段</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 Gentlelynn
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

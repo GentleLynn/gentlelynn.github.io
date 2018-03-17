@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Gentlelynn" />
+
+
+
+<meta name="description" content="曾经的面试中，布局都是问的比较多的，不过最近面试的几个公司，涉及到的都是js的问题相对多一些，我想大概是因为，最近框架用的越来越多，js的基础也就越来越重要，可能如果js水平欠缺的话，很难去掌握好一门框架，也就很难适应最近的前端开发工作">
+<meta name="keywords" content="css html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端工程师面试第一弹——水平居中&amp;垂直居中&amp;水平垂直都居中">
+<meta property="og:url" content="https://gentlelynn.github.io/2018/03/02/20170302cen/index.html">
+<meta property="og:site_name" content="For my cat">
+<meta property="og:description" content="曾经的面试中，布局都是问的比较多的，不过最近面试的几个公司，涉及到的都是js的问题相对多一些，我想大概是因为，最近框架用的越来越多，js的基础也就越来越重要，可能如果js水平欠缺的话，很难去掌握好一门框架，也就很难适应最近的前端开发工作">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-16T10:33:46.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端工程师面试第一弹——水平居中&amp;垂直居中&amp;水平垂直都居中">
+<meta name="twitter:description" content="曾经的面试中，布局都是问的比较多的，不过最近面试的几个公司，涉及到的都是js的问题相对多一些，我想大概是因为，最近框架用的越来越多，js的基础也就越来越重要，可能如果js水平欠缺的话，很难去掌握好一门框架，也就很难适应最近的前端开发工作">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="For my cat" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>前端工程师面试第一弹——水平居中&amp;垂直居中&amp;水平垂直都居中 | For my cat</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Gentlelynn</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-html/">css html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/express/">express</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/">html css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-html-css/">js html css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextjs/">nextjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术名词/">技术名词</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gentlelynn</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Gentlelynn</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20170302cen" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/03/02/20170302cen/" class="article-date">
+      <time datetime="2018-03-02T10:23:23.000Z" itemprop="datePublished">2018-03-02</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前端工程师面试第一弹——水平居中&amp;垂直居中&amp;水平垂直都居中
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css-html/">css html</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>    曾经的面试中，布局都是问的比较多的，不过最近面试的几个公司，涉及到的都是js的问题相对多一些，我想大概是因为，最近框架用的越来越多，js的基础也就越来越重要，可能如果js水平欠缺的话，很难去掌握好一门框架，也就很难适应最近的前端开发工作<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h2 id="一、水平居中"><a href="#一、水平居中" class="headerlink" title="一、水平居中"></a>一、水平居中</h2><h3 id="1-普通块级元素"><a href="#1-普通块级元素" class="headerlink" title="1.普通块级元素"></a>1.普通块级元素</h3><p>比如div，p，h1～h6等等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text-align:center;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-固定宽度的block元素"><a href="#2-固定宽度的block元素" class="headerlink" title="2.固定宽度的block元素"></a>2.固定宽度的block元素</h3><p>设置margin值,对于下面的div元素，在未设置margin值之前，文字在div中水平居中，但是div在整个浏览器中却并没有居中。使用该方法一定要注意需要有固定的宽度，因为默认的话占据100%的宽度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    width: 500px;</span><br><span class="line">    height: 300px;</span><br><span class="line">    text-align: center;</span><br><span class="line">    background-color: green;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div&gt;水平居中&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-内联元素"><a href="#3-内联元素" class="headerlink" title="3.内联元素"></a>3.内联元素</h3><p>只需要把内联元素包裹进一个属性display为block的父元素中并对父元素设置text-align属性即可。</p>
+<p>适用元素:文字、链接以及其他inline或者inline-*类型元素(inline-block, inline-table, inline-flex)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">span&#123;</span><br><span class="line">    display: block;</span><br><span class="line">    text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">&lt;span&gt;</span><br><span class="line">    &lt;a href=&quot;#&quot;&gt;链接一&lt;/a&gt;</span><br><span class="line">    &lt;a href=&quot;#&quot;&gt;链接二&lt;/a&gt;</span><br><span class="line">    &lt;a href=&quot;#&quot;&gt;链接三&lt;/a&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-多个块状元素-一"><a href="#4-多个块状元素-一" class="headerlink" title="4.多个块状元素(一)"></a>4.多个块状元素(一)</h3><p>如果页面有多个块状元素需要水平排列居中，可以将元素的属性设置为display:inline-block，并且把父元素的text-align属性设置为center。</p>
+<p>如果需要垂直排列居中的话，可以使用margin值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">h2&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h2&gt;二级标题一&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题二&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题三&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-多个块状元素-二"><a href="#5-多个块状元素-二" class="headerlink" title="5.多个块状元素(二)"></a>5.多个块状元素(二)</h3><p>使用flexbox布局方式，只需要把需要设置的块状元素的父元素的display设置为flex，并且设置justify-content为center。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h2&gt;二级标题一&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题二&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题三&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="6-多个块状元素-三"><a href="#6-多个块状元素-三" class="headerlink" title="6.多个块状元素(三)"></a>6.多个块状元素(三)</h3><p>三个块状元素垂直排列水平居中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">********使用text-align属性********</span><br><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h2&gt;二级标题一&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题二&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题三&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">********使用flex属性********</span><br><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">&#125;</span><br><span class="line">h2&#123;</span><br><span class="line">    align-self: center;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h2&gt;二级标题一&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题二&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题三&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="7-使用table属性"><a href="#7-使用table属性" class="headerlink" title="7.使用table属性"></a>7.使用table属性</h3><p>对于父元素和子元素的宽度都确定的情况，适合通过display:table-cell和margin-left实现CSS水平居中。</p>
+<p>使用时，父元素display:table-cell，子元素给剩余宽度一半的margin-left。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    width: 500px;</span><br><span class="line">    height: 300px;</span><br><span class="line">    display: table-cell;</span><br><span class="line">&#125;</span><br><span class="line">h2&#123;</span><br><span class="line">    background-color: blue;</span><br><span class="line">    width: 200px;</span><br><span class="line">    margin-left: 150px;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h2&gt;二级标题一&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题二&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题三&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="8-使用绝对定位"><a href="#8-使用绝对定位" class="headerlink" title="8.使用绝对定位"></a>8.使用绝对定位</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    width: 500px;</span><br><span class="line">    height: 300px;</span><br><span class="line">    position: absolute;</span><br><span class="line">&#125;</span><br><span class="line">h2&#123;</span><br><span class="line">    background-color: blue;</span><br><span class="line">    width: 200px;</span><br><span class="line">    margin-left: 150px;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h2&gt;二级标题一&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题二&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题三&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="9-fit-content"><a href="#9-fit-content" class="headerlink" title="9.fit-content"></a>9.fit-content</h3><p>使用fit-content与margin结合</p>
+<ul>
+<li>fit-content<br>大概理解就是包裹的意思，如果一个标签的属性设置为fit-content直观的感觉就是背景颜色在宽度上表现为紧紧包围着文字。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    width: 500px;</span><br><span class="line">    height: 300px;</span><br><span class="line">&#125;</span><br><span class="line">h2&#123;</span><br><span class="line">    background-color: blue;</span><br><span class="line">    width: fit-content;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h2&gt;二级标题一&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题二&lt;/h2&gt;</span><br><span class="line">    &lt;h2&gt;二级标题三&lt;/h2&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="10-translate属性"><a href="#10-translate属性" class="headerlink" title="10.translate属性"></a>10.translate属性</h3><p>适用于display为block或者是inline-block的元素。另外如果有多个垂直排列的元素的话，会发生重叠。比如下面的例子中有多个p标签，那么他们会重合到一起去。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    position: relative;</span><br><span class="line">&#125;</span><br><span class="line">span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    transform: translateX(-50%);</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;span&gt;水平居中&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">或者</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;水平居中&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="11-使用绝对定位，父元素大小不知，但知道子元素的宽度"><a href="#11-使用绝对定位，父元素大小不知，但知道子元素的宽度" class="headerlink" title="11.使用绝对定位，父元素大小不知，但知道子元素的宽度"></a>11.使用绝对定位，父元素大小不知，但知道子元素的宽度</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    position: relative;</span><br><span class="line">&#125;</span><br><span class="line">p&#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    width: 宽度值;</span><br><span class="line">    left:50%;</span><br><span class="line">    margin-left: -(宽度值/2);</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;段落居中&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>以上代码中，p元素相对于div元素确实是水平居中的，但是其中的文字却并没有居中，如果想要设置文字居中的话，可以再继续添加以恶搞text-align属性为center即可。</p>
+<h2 id="二、垂直居中"><a href="#二、垂直居中" class="headerlink" title="二、垂直居中"></a>二、垂直居中</h2><h3 id="1-单行行内元素"><a href="#1-单行行内元素" class="headerlink" title="1.单行行内元素"></a>1.单行行内元素</h3><p>当一个行内元素，即inline，inline-*类型的元素需要居中的话，可将它的line-height同时设置为父元素的高度即可实现垂直居中效果。<br>height=line-height<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    height: 300px;</span><br><span class="line">    background-color: red;</span><br><span class="line">&#125;</span><br><span class="line">span&#123;</span><br><span class="line">    line-height: 300px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;span&gt;水平垂直居中&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-多行行内元素"><a href="#2-多行行内元素" class="headerlink" title="2.多行行内元素"></a>2.多行行内元素</h3><p>组合使用display:table-cell和vertical-align:middle属性来定义需要居中的元素的父容器元素生成效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    display: table-cell;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    height: 300px;</span><br><span class="line">&#125;</span><br><span class="line">span&#123;</span><br><span class="line">    color: #fff;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;span&gt;时维九月，序属三秋。潦水尽而寒潭清，烟光凝而暮山紫。</span><br><span class="line">    俨骖騑于上路，访风景于崇阿；临帝子之长洲，得天人之旧馆。</span><br><span class="line">    层峦耸翠，上出重霄；飞阁流丹，下临无地。鹤汀凫渚，穷岛屿之萦回；桂殿兰宫，即冈峦之体势。&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-已知高度的块状元素"><a href="#3-已知高度的块状元素" class="headerlink" title="3.已知高度的块状元素"></a>3.已知高度的块状元素</h3><p>将待居中元素设置为绝地定位，并且设置margin为居中元素高度一半的负值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line"> div&#123;</span><br><span class="line">    height: 100px;</span><br><span class="line">    width: 100px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 50%;</span><br><span class="line">    margin-top: -50px;</span><br><span class="line">    padding: 0;</span><br><span class="line">    background-color: red;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line">⚠️如果元素有padding值的话，此时margin-top 的负值要再减去相对应的padding-top值。比如上面的代码中如果padding-top为20px，那么，此时的margin-top等于-50—（20/2）=-60px；</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-未知高度的块状元素"><a href="#4-未知高度的块状元素" class="headerlink" title="4.未知高度的块状元素"></a>4.未知高度的块状元素</h3><p>使用transform属性来垂直移动来实现垂直居中：类似于水平居中，也曾使用过这个方法。只不过是translateX。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    top: 50%;</span><br><span class="line">    position: absolute;</span><br><span class="line">    transform: translateY(-50%);</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;离离原上草一岁一枯荣&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="三、垂直水平都居中"><a href="#三、垂直水平都居中" class="headerlink" title="三、垂直水平都居中"></a>三、垂直水平都居中</h2><h3 id="1-已经宽度和高度的块状元素"><a href="#1-已经宽度和高度的块状元素" class="headerlink" title="1.已经宽度和高度的块状元素"></a>1.已经宽度和高度的块状元素</h3><p>使用绝对定位，将margin-left和margin-top分别设置为宽度和高度一半的负值即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">    height: 300px;</span><br><span class="line">    background-color: red;</span><br><span class="line">    top: 50%;</span><br><span class="line">    left: 50%;</span><br><span class="line">    position: absolute;</span><br><span class="line">    margin-top: -150px;</span><br><span class="line">    margin-left: -150px;</span><br><span class="line">    //这两行是为了使文字也水平垂直居中</span><br><span class="line">    text-align: center;</span><br><span class="line">    line-height: 300px;</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;离离原上草一岁一枯荣&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-未知宽度和高度的元素"><a href="#2-未知宽度和高度的元素" class="headerlink" title="2.未知宽度和高度的元素"></a>2.未知宽度和高度的元素</h3><p>transform属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    top: 50%;</span><br><span class="line">    left: 50%;</span><br><span class="line">    position: absolute;</span><br><span class="line">    transform: translate(-50%, -50%);</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;离离原上草一岁一枯荣&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-flex"><a href="#3-flex" class="headerlink" title="3.flex"></a>3.flex</h3><p>⚠️上面几个都是div相对于整个浏览器是水平垂直居中的，但是这个呢，是div中包裹的文字相对于div元素的宽度(100%)高度水平垂直居中的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">### css</span><br><span class="line">div&#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    height: 300px;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;//水平方向</span><br><span class="line">    align-items: center;//垂直方向</span><br><span class="line">&#125;</span><br><span class="line">### html</span><br><span class="line">&lt;div&gt;离离原上草一岁一枯荣&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/03/02/20170302cen/">前端工程师面试第一弹——水平居中&amp;垂直居中&amp;水平垂直都居中</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Gentlelynn</a></p>
+        <p><span>发布时间:</span>2018-03-02, 18:23:23</p>
+        <p><span>最后更新:</span>2018-03-16, 18:33:46</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/03/02/20170302cen/" title="前端工程师面试第一弹——水平居中&amp;垂直居中&amp;水平垂直都居中">https://gentlelynn.github.io/2018/03/02/20170302cen/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://gentlelynn.github.io/2018/03/02/20170302cen/　　作者: Gentlelynn" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/03/03/0303get/">
+                    一个程序媛的心路历程
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/03/01/20180316rew/">
+                    前端工程师面试总结——心理
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、水平居中"><span class="toc-number">1.</span> <span class="toc-text">一、水平居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-普通块级元素"><span class="toc-number">1.1.</span> <span class="toc-text">1.普通块级元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-固定宽度的block元素"><span class="toc-number">1.2.</span> <span class="toc-text">2.固定宽度的block元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-内联元素"><span class="toc-number">1.3.</span> <span class="toc-text">3.内联元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-多个块状元素-一"><span class="toc-number">1.4.</span> <span class="toc-text">4.多个块状元素(一)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-多个块状元素-二"><span class="toc-number">1.5.</span> <span class="toc-text">5.多个块状元素(二)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-多个块状元素-三"><span class="toc-number">1.6.</span> <span class="toc-text">6.多个块状元素(三)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-使用table属性"><span class="toc-number">1.7.</span> <span class="toc-text">7.使用table属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-使用绝对定位"><span class="toc-number">1.8.</span> <span class="toc-text">8.使用绝对定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-fit-content"><span class="toc-number">1.9.</span> <span class="toc-text">9.fit-content</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-translate属性"><span class="toc-number">1.10.</span> <span class="toc-text">10.translate属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-使用绝对定位，父元素大小不知，但知道子元素的宽度"><span class="toc-number">1.11.</span> <span class="toc-text">11.使用绝对定位，父元素大小不知，但知道子元素的宽度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、垂直居中"><span class="toc-number">2.</span> <span class="toc-text">二、垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-单行行内元素"><span class="toc-number">2.1.</span> <span class="toc-text">1.单行行内元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-多行行内元素"><span class="toc-number">2.2.</span> <span class="toc-text">2.多行行内元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-已知高度的块状元素"><span class="toc-number">2.3.</span> <span class="toc-text">3.已知高度的块状元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-未知高度的块状元素"><span class="toc-number">2.4.</span> <span class="toc-text">4.未知高度的块状元素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、垂直水平都居中"><span class="toc-number">3.</span> <span class="toc-text">三、垂直水平都居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-已经宽度和高度的块状元素"><span class="toc-number">3.1.</span> <span class="toc-text">1.已经宽度和高度的块状元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-未知宽度和高度的元素"><span class="toc-number">3.2.</span> <span class="toc-text">2.未知宽度和高度的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-flex"><span class="toc-number">3.3.</span> <span class="toc-text">3.flex</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"前端工程师面试第一弹——水平居中&垂直居中&水平垂直都居中　| For my cat　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2018/03/02/20170302cen/" data-title="前端工程师面试第一弹——水平居中&amp;垂直居中&amp;水平垂直都居中" data-url="https://gentlelynn.github.io/2018/03/02/20170302cen/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/03/03/0303get/" title="上一篇: 一个程序媛的心路历程">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/03/01/20180316rew/" title="下一篇: 前端工程师面试总结——心理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/180313resume1/">这两天做简历时遇到的问题及解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/06/20180316float/">前端工程师面试第三弹--浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/03/20180303/">前端工程师面试第二弹——布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/03/0303get/">一个程序媛的心路历程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/20170302cen/">前端工程师面试第一弹——水平居中&垂直居中&水平垂直都居中</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/01/20180316rew/">前端工程师面试总结——心理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/28/180228/">由两个span元素引发的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/sentences/">那些我觉得很美很美的句子</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/180227next/">nextjs学习笔记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/29/180227html/">菜鸟教程——HTML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/20171204/">《ThinkinJava》读书笔记就一篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/180102/">我想和你好好的</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/18/20180110data1/">大话数据结构读书笔记(一)——冒泡排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/20171120express/">express的安装和使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/20170826/">胆小的戏精女——独立回家</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/20170720/">《坦白书》读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/03/20170303/">记录一些我可能遇见的技术名词</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/12/zbj180227/">The art of writing small and plain functions</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/180227blog/">hexo+github博客搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/mycat/">我的猫</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/30/myself/">个人原创片段</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 Gentlelynn
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

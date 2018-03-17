@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Gentlelynn" />
+
+
+
+<meta name="description" content="准备工作1.指针与结构体参考网址: http://www.cnblogs.com/qyaizs/articles/2039101.html 指向结构体类型变量的使用1234567891011121314151617定义结构体：struct stu&amp;#123;    char name[20];    long ">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大话数据结构读书笔记(一)——冒泡排序">
+<meta property="og:url" content="https://gentlelynn.github.io/2017/10/18/20180110data1/index.html">
+<meta property="og:site_name" content="For my cat">
+<meta property="og:description" content="准备工作1.指针与结构体参考网址: http://www.cnblogs.com/qyaizs/articles/2039101.html 指向结构体类型变量的使用1234567891011121314151617定义结构体：struct stu&amp;#123;    char name[20];    long number;    float score[4];&amp;#125;;//再定义指向结构体类">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-16T11:19:13.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大话数据结构读书笔记(一)——冒泡排序">
+<meta name="twitter:description" content="准备工作1.指针与结构体参考网址: http://www.cnblogs.com/qyaizs/articles/2039101.html 指向结构体类型变量的使用1234567891011121314151617定义结构体：struct stu&amp;#123;    char name[20];    long number;    float score[4];&amp;#125;;//再定义指向结构体类">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="For my cat" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>大话数据结构读书笔记(一)——冒泡排序 | For my cat</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Gentlelynn</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-html/">css html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/express/">express</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/">html css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-html-css/">js html css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextjs/">nextjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术名词/">技术名词</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gentlelynn</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Gentlelynn</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-20180110data1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/18/20180110data1/" class="article-date">
+      <time datetime="2017-10-18T11:14:12.000Z" itemprop="datePublished">2017-10-18</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      大话数据结构读书笔记(一)——冒泡排序
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="1-指针与结构体"><a href="#1-指针与结构体" class="headerlink" title="1.指针与结构体"></a>1.指针与结构体</h3><p>参考网址: <a href="http://www.cnblogs.com/qyaizs/articles/2039101.html" target="_blank" rel="noopener">http://www.cnblogs.com/qyaizs/articles/2039101.html</a></p>
+<p>指向结构体类型变量的使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">定义结构体：</span><br><span class="line">struct stu&#123;</span><br><span class="line">    char name[20];</span><br><span class="line">    long number;</span><br><span class="line">    float score[4];</span><br><span class="line">&#125;;</span><br><span class="line">//再定义指向结构体类型变量的指针变量</span><br><span class="line">struct stu *p1, *p2;</span><br><span class="line">//定义指针变量p1、p2，分别指向结构体类型变量。</span><br><span class="line">引用形式为：指针变量→成员;</span><br><span class="line">或者是指针变量.成员</span><br><span class="line">typedef struct&#123;</span><br><span class="line">    char name[20];</span><br><span class="line">    long number;</span><br><span class="line">    float score[4];</span><br><span class="line">&#125;Stu;</span><br><span class="line">//typedef(type define)在这里的作用是为结构体起了一个名为Stu的别名，当我们再次定义变量的时候，就可以直接使用Stu来定义了。</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-i"><a href="#2-i" class="headerlink" title="2.i++"></a>2.i++</h3><ul>
+<li>i++ 返回原来的值，++i 返回加1后的值。</li>
+<li>i++ 不能作为左值，而++i 可以。<h3 id="3-Status"><a href="#3-Status" class="headerlink" title="3. Status"></a>3. Status</h3></li>
+<li>typedef int status;</li>
+</ul>
+<p>C语言中没有status这个关键字.但一般写程序时,会定义这样的一个类型,用来表示成功或失败状态.如：0表示成功,-1表示失败。这样status就可以定义成int类型,然后用它去定义变量或函数返回值类型。其实上面也已经提到过，typedef有重命名的意思，也就是说这一句话也可以表示又重新定义了一个变量表示int这种数据类型，然后这种数据类型可以专门用来表示状态。</p>
+<h3 id="4-malloc函数的用法"><a href="#4-malloc函数的用法" class="headerlink" title="4.malloc函数的用法"></a>4.malloc函数的用法</h3><ul>
+<li>须要包括头文件：#include ‘stdlib.h’</li>
+<li>函数声明(函数原型)：void *malloc(int size);</li>
+<li>malloc 向系统申请分配指定size个字节的内存空间。返回类型是 void<em> 类型。void</em> 表示未确定类型的指针</li>
+<li>void* 类型能够强制转换为不论什么其他类型的指针</li>
+<li>我们必须手动指定分配的空间的大小</li>
+<li>int<em> TR=(int</em>)malloc(L-&gt;length <em> sizeof(int));/</em> 申请额外空间 */<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(分配类型*)malloc(分配元素个数*sizeof(分配类型))</span><br><span class="line">+ 此处的分配类型是为了将原来的void*类型强制转换为我们需要定义成的类型。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-一些基础准备"><a href="#5-一些基础准备" class="headerlink" title="5.一些基础准备"></a>5.一些基础准备</h3><ul>
+<li>内排和外排<br>根据排序过程中待排序的记录是否全都放置在内存中。如果是则是内排序，否则由于排序的记录太多，不能同时放置在内存，整个排序过程需要在内外存之间多次交换数据，这样的排序称为外排序。</li>
+<li>稳定性，⚠️<code>是否稳定由排序算法决定</code>。假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些记录的相对次序保持不变，即在原序列中，ri=rj，且ri在rj之前，而在排序后的序列中，ri仍在rj之前，则称这种排序算法是稳定的；否则称为不稳定的。</li>
+<li><p>线性表的顺序存储结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#define MAXSIZE 10///* 用于要排序数组个数最大值，可根据需要修改 */</span><br><span class="line">typedef struct &#123;</span><br><span class="line">    int r[MAXSIZE +1];/* 用于存储要排序数组，r[0]用作哨兵或临时变量 */</span><br><span class="line">    int length;/* 用于记录顺序表的长度 */</span><br><span class="line">&#125;SqList;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>swap函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/* 交换L中数组r的下标为i和j的值 */</span><br><span class="line">void swap(SqList *L,int i,int j) &#123; </span><br><span class="line">    int temp=L-&gt;r[i]; </span><br><span class="line">    L-&gt;r[i]=L-&gt;r[j]; </span><br><span class="line">    L-&gt;r[j]=temp; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2-冒泡排序-以递增为例"><a href="#2-冒泡排序-以递增为例" class="headerlink" title="2.冒泡排序(以递增为例)"></a>2.冒泡排序(以递增为例)</h2><p>依次比较相邻两个数据的大小，如果右边的数据比左边的数据小，那么交换两个数的位置，我想叫冒泡排序的原因就是因为本来大的数从原本队列中冒出到前面。</p>
+<h3 id="c语言版"><a href="#c语言版" class="headerlink" title="c语言版"></a>c语言版</h3><p>⚠️⚠️⚠️在方法二和方法三中，j的条件是j&gt;=<br>i,这样做的目的是在每次循环遍历排序的时候，最小值已经冒泡到了最前端，i的值也在不断变化着，所以j并不需要对i左边的数据进行比较和排序。<br>方法一并不满足冒泡排序的思想，只是简单的两两交换，虽然达到了排序的目的，但是效率低下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void BubbleSort0(SqList * L)&#123;</span><br><span class="line">    int i, j;</span><br><span class="line">    for (int i = 1; i &lt; L-&gt;length; ++i)&#123;</span><br><span class="line">        for (int j = i+1; j &lt;= L-&gt;length; j++)&#123;</span><br><span class="line">            if (L-&gt;r[i]&gt;L-&gt;r[j])&#123;</span><br><span class="line">                swap(L, i, j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//对于一个数组下标为1-9，那么i的指针依次从1走到8，而j的指针呢，则是从2走到9</span><br></pre></td></tr></table></figure></p>
+<p>方法二冒泡排序最后的小数据不断的网上冒，直到走到适合他的位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">void BubbleSort1(SqList * L)&#123;</span><br><span class="line">    int i, j;</span><br><span class="line">    for (int i = 1; i &lt; L-&gt;length; ++i)&#123;</span><br><span class="line">        for (int j = L-&gt;length-1; j&gt;=i; j--)&#123;</span><br><span class="line">            if (L-&gt;r[j+1]&gt;L-&gt;r[j])&#123;</span><br><span class="line">                swap(L, i, j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法三，改进的冒泡排序，增加了对数组某些数据是否已经有序的判断。避免对已经有序的数据进行遍历比较，增加不必要的时间消耗。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void BubbleSort2(SqList * L)&#123;</span><br><span class="line">    int i, j;</span><br><span class="line">    Status flag = true;</span><br><span class="line">    for (int i = 1; i &lt; L-&gt;length &amp;&amp; flag; ++i)&#123;</span><br><span class="line">        for (int j = L-&gt;length-1; j&gt;=i; j--)&#123;</span><br><span class="line">            flag = false;</span><br><span class="line">            if (L-&gt;r[j+1]&gt;L-&gt;r[j])&#123;</span><br><span class="line">                swap(L, i, j);</span><br><span class="line">                flag = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><ul>
+<li>最好情况：需要排序的数据已经是一个有序的，故只需要遍历一次就可以确定这是一个排序完成的序列，此时时间复杂度为O(n)</li>
+<li>最坏情况：需要排序的数据恰好是一个反序列的数据，所有的数据都需要进行一次循环遍历排序，此时的时间复杂度为1+2+..+(n-1)=(n-1)(n-1+1)/2=n(n-1)/2</li>
+<li>综上所述，时间复杂度为O(n^2) </li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/10/18/20180110data1/">大话数据结构读书笔记(一)——冒泡排序</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Gentlelynn</a></p>
+        <p><span>发布时间:</span>2017-10-18, 19:14:12</p>
+        <p><span>最后更新:</span>2018-03-16, 19:19:13</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/10/18/20180110data1/" title="大话数据结构读书笔记(一)——冒泡排序">https://gentlelynn.github.io/2017/10/18/20180110data1/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://gentlelynn.github.io/2017/10/18/20180110data1/　　作者: Gentlelynn" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/12/02/180102/">
+                    我想和你好好的
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/08/31/20171120express/">
+                    express的安装和使用
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-指针与结构体"><span class="toc-number">1.1.</span> <span class="toc-text">1.指针与结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-i"><span class="toc-number">1.2.</span> <span class="toc-text">2.i++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Status"><span class="toc-number">1.3.</span> <span class="toc-text">3. Status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-malloc函数的用法"><span class="toc-number">1.4.</span> <span class="toc-text">4.malloc函数的用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-一些基础准备"><span class="toc-number">1.5.</span> <span class="toc-text">5.一些基础准备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-冒泡排序-以递增为例"><span class="toc-number">2.</span> <span class="toc-text">2.冒泡排序(以递增为例)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#c语言版"><span class="toc-number">2.1.</span> <span class="toc-text">c语言版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间复杂度分析"><span class="toc-number">2.2.</span> <span class="toc-text">时间复杂度分析</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"大话数据结构读书笔记(一)——冒泡排序　| For my cat　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/10/18/20180110data1/" data-title="大话数据结构读书笔记(一)——冒泡排序" data-url="https://gentlelynn.github.io/2017/10/18/20180110data1/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/12/02/180102/" title="上一篇: 我想和你好好的">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/08/31/20171120express/" title="下一篇: express的安装和使用">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/180313resume1/">这两天做简历时遇到的问题及解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/06/20180316float/">前端工程师面试第三弹--浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/03/20180303/">前端工程师面试第二弹——布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/03/0303get/">一个程序媛的心路历程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/20170302cen/">前端工程师面试第一弹——水平居中&垂直居中&水平垂直都居中</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/01/20180316rew/">前端工程师面试总结——心理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/28/180228/">由两个span元素引发的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/sentences/">那些我觉得很美很美的句子</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/180227next/">nextjs学习笔记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/29/180227html/">菜鸟教程——HTML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/20171204/">《ThinkinJava》读书笔记就一篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/180102/">我想和你好好的</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/18/20180110data1/">大话数据结构读书笔记(一)——冒泡排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/20171120express/">express的安装和使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/20170826/">胆小的戏精女——独立回家</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/20170720/">《坦白书》读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/03/20170303/">记录一些我可能遇见的技术名词</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/12/zbj180227/">The art of writing small and plain functions</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/180227blog/">hexo+github博客搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/mycat/">我的猫</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/30/myself/">个人原创片段</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 Gentlelynn
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
