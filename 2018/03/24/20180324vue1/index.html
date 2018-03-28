@@ -15,19 +15,21 @@
 
 
 
-<meta name="description" content="本文由我一边看菜鸟教程中的html教程(原文网址:https://segmentfault.com/a/1190000010311978)， 一边根据自己的实际操作验证写成。其中包括一些我觉得可能需要注意的点，以及在实际操作之后总结的一些经验。">
+<meta name="description" content="跟着视频里的老师做东西，一些不知道的知识的总结以及因为版本的问题出现的一些问题的解决。">
+<meta name="keywords" content="vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="菜鸟教程——HTML">
-<meta property="og:url" content="https://gentlelynn.github.io/2018/01/29/180227html/index.html">
+<meta property="og:title" content="Vue.js高仿饿了么外卖App学习笔记(一)">
+<meta property="og:url" content="https://gentlelynn.github.io/2018/03/24/20180324vue1/index.html">
 <meta property="og:site_name" content="For my cat">
-<meta property="og:description" content="本文由我一边看菜鸟教程中的html教程(原文网址:https://segmentfault.com/a/1190000010311978)， 一边根据自己的实际操作验证写成。其中包括一些我觉得可能需要注意的点，以及在实际操作之后总结的一些经验。">
+<meta property="og:description" content="跟着视频里的老师做东西，一些不知道的知识的总结以及因为版本的问题出现的一些问题的解决。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2014/08/learn-html5-tables-5-638.jpg">
-<meta property="og:updated_time" content="2018-02-27T13:37:57.689Z">
+<meta property="og:image" content="http://image.bubuko.com/info/201801/20180125223609509164.jpg">
+<meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1329011648,3013880242&fm=27&gp=0.jpg">
+<meta property="og:updated_time" content="2018-03-28T03:51:35.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="菜鸟教程——HTML">
-<meta name="twitter:description" content="本文由我一边看菜鸟教程中的html教程(原文网址:https://segmentfault.com/a/1190000010311978)， 一边根据自己的实际操作验证写成。其中包括一些我觉得可能需要注意的点，以及在实际操作之后总结的一些经验。">
-<meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2014/08/learn-html5-tables-5-638.jpg">
+<meta name="twitter:title" content="Vue.js高仿饿了么外卖App学习笔记(一)">
+<meta name="twitter:description" content="跟着视频里的老师做东西，一些不知道的知识的总结以及因为版本的问题出现的一些问题的解决。">
+<meta name="twitter:image" content="http://image.bubuko.com/info/201801/20180125223609509164.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>菜鸟教程——HTML | For my cat</title>
+<title>Vue.js高仿饿了么外卖App学习笔记(一) | For my cat</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -266,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-180227html" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20180324vue1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/01/29/180227html/" class="article-date">
-      <time datetime="2018-01-29T13:27:51.000Z" itemprop="datePublished">2018-01-29</time>
+      <a href="/2018/03/24/20180324vue1/" class="article-date">
+      <time datetime="2018-03-24T03:41:16.000Z" itemprop="datePublished">2018-03-24</time>
 </a>
 
 
@@ -285,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      菜鸟教程——HTML
+      Vue.js高仿饿了么外卖App学习笔记(一)
     </h1>
   
 
@@ -295,6 +297,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -302,72 +308,62 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>    本文由我一边看菜鸟教程中的html教程(原文网址:<a href="https://segmentfault.com/a/1190000010311978)，" target="_blank" rel="noopener">https://segmentfault.com/a/1190000010311978)，</a> 一边根据自己的实际操作验证写成。其中包括一些我觉得可能需要注意的点，以及在实际操作之后总结的一些经验。<br><a id="more"></a></excerpt></p>
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>    跟着视频里的老师做东西，一些不知道的知识的总结以及因为版本的问题出现的一些问题的解决。<br><a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<h3 id="1-html简介"><a href="#1-html简介" class="headerlink" title="1.html简介"></a>1.html简介</h3><ul>
-<li><html>表示页面的跟元素，也就是dom节点中的root根节点</html></li>
-<li><head>元素包含文档的元数据(<a href="http://blog.csdn.net/yjh314/article/details/53404797),文档的特征数据，比如编码方式、标题等。" target="_blank" rel="noopener">http://blog.csdn.net/yjh314/article/details/53404797),文档的特征数据，比如编码方式、标题等。</a></head></li>
-<li>编码格式，<code>meta charest=&quot;utf-8&quot;</code>当不写这个时候在chrome浏览器中并没有出现问题，但是在safari浏览器中出现乱码问题。<h3 id="2-html编辑器"><a href="#2-html编辑器" class="headerlink" title="2.html编辑器"></a>2.html编辑器</h3></li>
-<li>emmet插件(x<a href="http://www.iteye.com/news/27580)很多快捷方式的使用可以大大提高我们的编码速度" target="_blank" rel="noopener">http://www.iteye.com/news/27580)很多快捷方式的使用可以大大提高我们的编码速度</a></li>
-<li>GPL<h3 id="3-h1～h6"><a href="#3-h1～h6" class="headerlink" title="3.h1～h6"></a>3.h1～h6</h3></li>
-<li>在标题中，会有明显的空行，也许是在编写标签的时候就已经将换行加入其中。段落同样也有这样的特性</li>
-<li>1到6号标题与1到6号字体逆序对应，比如1号字体对应6号标题，2号字体对应5号标题。<code>font size = &quot;1&quot;</code>设置字体大小<h3 id="4-格式化标签"><a href="#4-格式化标签" class="headerlink" title="4.格式化标签"></a>4.格式化标签</h3>通常标签<code>&lt;strong&gt;</code>替换加粗标签<code>&lt;b&gt;</code>来使用,<code>&lt;em&gt;</code>替换<code>&lt;i&gt;</code>标签使用。然而，这些标签的含义是不同的：<code>&lt;b&gt;</code>与<code>&lt;i&gt;</code>定义粗体或斜体文本。<code>&lt;strong&gt;</code>或者<code>&lt;em&gt;</code>意味着你要呈现的文本是重要的，所以要突出显示。</li>
-<li>b(bold)-&gt;strong加粗字体</li>
-<li>i(italic)-&gt;em倾斜字体</li>
-<li>small缩小字体</li>
-<li>big放大字体</li>
-<li>pre(prepare)预排版</li>
-<li>sub(subscript)下标</li>
-<li>sup(superior)上标</li>
-<li>address地址，会以斜体的格式呈现</li>
-<li>q(quote)引用，文字会自动加上双引号</li>
-<li>ins(insert)定义插入文字，会有下划线效果</li>
-<li>u(underline)下划线效果</li>
-<li>del(delete)定义删除字，会在文字中间有一条删除线<h3 id="5-链接"><a href="#5-链接" class="headerlink" title="5.链接"></a>5.链接</h3>超链接并不一定是一个html地址，也有可能只是指向一段文字，一张图片，一个地址等等。</li>
-<li>id，也就是可以设置锚点，指向指定的位置</li>
-<li>target，打开超链接的方式，另外target还可以指定打开的页面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;http://www.baidu.com&quot; frameborder=&quot;0&quot; width=&quot;400px&quot; name=&quot;iframe_a&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;p&gt;&lt;a href=&quot;http://www.runoob.com&quot; target=&quot;iframe_a&quot;&gt;显示到上面的框架中&lt;/a&gt;&lt;/p&gt;</span><br><span class="line">//点击链接，iframe中将会显示a标签指定的链接</span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="vue的介绍和安装"><a href="#vue的介绍和安装" class="headerlink" title="vue的介绍和安装"></a>vue的介绍和安装</h2><p><img src="http://image.bubuko.com/info/201801/20180125223609509164.jpg" alt="image"></p>
+<p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1329011648,3013880242&amp;fm=27&amp;gp=0.jpg" alt="image"></p>
+<p>组件设计原则</p>
+<ul>
+<li>页面上每个独立的可视/可交互区域视为一个组件</li>
+<li>每个组件对应一个工程目录，组件所需要的各种资源在这个目录下就近维护。</li>
+<li>页面不过是组件容器，组件可以嵌套自由组合形成完整的页面。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;#C4&gt;&quot;&gt;指向章节4&lt;/a&gt;</span><br><span class="line">&lt;p&gt;&lt;a href=&quot;#C4&quot;&gt;查看章节 4&lt;/a&gt;&lt;/p&gt;</span><br><span class="line">&lt;h2&gt;章节一&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;这里显示的是章节一的内容&lt;/p&gt;</span><br><span class="line">&lt;h2&gt;章节二&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;这里显示的是章节二的内容&lt;/p&gt;</span><br><span class="line">&lt;h2&gt;章节三&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;这里显示的是章节三的内容&lt;/p&gt;</span><br><span class="line">&lt;h2&gt;&lt;a id=&quot;C4&quot;&gt;章节四&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;这里显示的是章节四的内容&lt;/p&gt;</span><br><span class="line">&lt;h2&gt;章节五&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;这里显示的是章节五的内容&lt;/p&gt;</span><br><span class="line">&lt;h2&gt;章节六&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;这里显示的是章节六的内容&lt;/p&gt;</span><br><span class="line">&lt;h2&gt;章节七&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;这里显示的是章节七的内容&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<p>在上面这个例子中，不加p标签的a链接并没有起到任何作用，并不知道是为什么。另外，如果像上面这样页面可以放下所有的内容，可能看不出来显示的效果。但是如果有了滚动条且内容足够多的时候，就会明显看出来章节4的内容显示在了浏览器的头部位置，如果虽然有滚动条，但是内容并不是很多，则会走到滚动条的尽头。</p>
-<h3 id="6-邮件发送"><a href="#6-邮件发送" class="headerlink" title="6.邮件发送"></a>6.邮件发送</h3><ul>
-<li>mailto发送邮件的方式</li>
-<li>cc抄送</li>
-<li>subject主题</li>
-<li>body邮件正文<h3 id="7-base标签"><a href="#7-base标签" class="headerlink" title="7.base标签"></a>7.base标签</h3></li>
-<li>base标签，基本的链接地址/链接目标，该标签作为HTML文档中所有的链接标签的默认链接。也就是说如果一个a标签没有指定href属性，那么它会指向base的href属性中的链接。并且可以定义所有标签的默认属性，比如target=_blank，那么所有链接都会在新的页面打开<h3 id="8-图像映射"><a href="#8-图像映射" class="headerlink" title="8.图像映射"></a>8.图像映射</h3>图像映射指的是带有可点击区域的图像</li>
-<li>usemap与map中的name属性对应</li>
-<li>area定义映射区域，也就是图像中可点击的区域。包含shape、coords(coordinate)、href和alt属性等<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;&quot; alt=&quot;猫咪&quot; usemap=&quot;cat&quot;&gt;</span><br><span class="line">    &lt;map name=&quot;cat&quot;&gt;</span><br><span class="line">        &lt;area shape=&quot;circle&quot; coords=&quot;200,300,60&quot; href=&quot;http://www.baidu.com&quot; alt=&quot;百度&quot;&gt;//圆心为(200,300)半径为60的圆形</span><br><span class="line">        &lt;area shape=&quot;rectangle&quot; coords=&quot;12,16,22,26&quot; href=&quot;http://www.runoob.com&quot; alt=&quot;菜鸟教程&quot;&gt;//左上顶点为(12,16),右上顶点为(22,26)的矩形</span><br><span class="line">    &lt;/map&gt;</span><br></pre></td></tr></table></figure>
-</li>
+<p>单元测试</p>
+<ul>
+<li><a href="http://hao.jobbole.com/karma/" target="_blank" rel="noopener">Karma</a></li>
+<li><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00147203593334596b366f3fe0b409fbc30ad81a0a91c4a000" target="_blank" rel="noopener">Mocha</a>，JavaScript的一种单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行。</li>
 </ul>
-<h3 id="9-表格"><a href="#9-表格" class="headerlink" title="9.表格"></a>9.表格</h3><ul>
-<li>table表格的开始</li>
-<li>tr(table row)一行的开始，有几个就有几行</li>
-<li>td(table date)单元格中的数据，也可以说有几个就有几列</li>
-<li>th(table head)表格头</li>
-<li>caption表格的标题</li>
-<li>colspan，定义横向合并几个单元格</li>
-<li>rowspan，定义纵向合并几个单元格</li>
-<li>cellspacing，单元格之间的距离</li>
-<li>cellpadding，内容与表格边框之间的距离</li>
-<li>colgroup额外的定义表格的样式与col配合</li>
-<li>thead ———表格的页眉</li>
-<li>tbody ———表格的主体</li>
-<li>tfoot ———定义表格的页脚<br><img src="http://www.runoob.com/wp-content/uploads/2014/08/learn-html5-tables-5-638.jpg" alt="image"><h3 id="10-列表"><a href="#10-列表" class="headerlink" title="10.列表"></a>10.列表</h3></li>
-<li>发现一个有意思的现象，如果我定义了一个嵌套的无序列表，那么他们的前面的小点点是从实心原点、空心原点、实心方框这样的顺序表示的。</li>
-<li>自定义列表，类似于table表格,dl(define list)、dt(define)和dd(define data/description)<h3 id="11-特殊知识"><a href="#11-特殊知识" class="headerlink" title="11.特殊知识"></a>11.特殊知识</h3></li>
-<li>web安全色</li>
-<li><a href="http://www.runoob.com/html/html-colornames.html" target="_blank" rel="noopener">141颜色名称</a>，是在HTML和CSS颜色规范定义的（17标准颜色，再加124）。17标准颜色：黑色，蓝色，水，紫红色，灰色，绿色，石灰，栗色，海军，橄榄，橙，紫，红，白，银，蓝绿色，黄色。</li>
-<li><a href="http://www.runoob.com/tags/ref-entities.html" target="_blank" rel="noopener">字符实体</a>,大小写敏感<code>&amp;nbsp;-&gt;(non-breaking space)</code><h3 id="12-url-uniform-resource-locator"><a href="#12-url-uniform-resource-locator" class="headerlink" title="12.url(uniform resource locator)"></a>12.url(uniform resource locator)</h3>scheme://host.domain:port/path/filename</li>
-<li>scheme,因特网服务类型，比如http,https,ftp,file(本地)</li>
-<li>host，主机名，默认是www</li>
-<li>domain，域名，</li>
-<li>post，主机上的端口号</li>
-<li>path，服务器上的路径</li>
-<li>filename，文件名</li>
-<li>url使用ascii字符编码集，使用”%”其后跟随两位的十六进制数来替换非ASCII字符。不能包含空格。通常使用 + 来替换空格。</li>
-<li><a href="https://www.cnblogs.com/xk-bench/p/7543500.html" target="_blank" rel="noopener">url中一些字符的作用</a>,比如&amp;表示几个并列参数之间的连接。</li>
+<p>e2e测试</p>
+<ul>
+<li><a href="http://blog.csdn.net/panda_m/article/details/66973598?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="noopener">http://blog.csdn.net/panda_m/article/details/66973598?utm_source=itdadao&amp;utm_medium=referral</a></li>
+<li>e2e或者端到端（end-to-end）或者UI测试是一种测试方法，它用来测试一个应用从头到尾的流程是否和设计时候所想的一样。简而言之，它从一个用户的角度出发，认为整个系统都是一个黑箱，只有UI会暴露给用户。<h2 id="项目文件介绍"><a href="#项目文件介绍" class="headerlink" title="项目文件介绍"></a>项目文件介绍</h2></li>
+<li>build,webpack配置相关</li>
+<li>node_modules,通过node安装的项目依赖</li>
+<li>src，源码</li>
+<li>static，存放第三方静态资源，.gitkeep的用处是当该目录为空时，也可以将该代码提交到git仓库中。因为git会自动忽略空目录</li>
+<li>babelsrc,babel的配置文件，presets转码规则，stage-2表示草案(ES7不同阶段语法提案的转码规则（共有4个阶段），选装一个)</li>
+<li>editencoding,编辑器的配置</li>
+<li>eslintignore，忽略语法检查的目录文件</li>
+<li>eslintsrc，eslint配置文件，rules用来自己定义部分规则</li>
+<li>gitingore，提交到git时忽略到文件</li>
+<li>postcssrc，postcss预处理器，而这是它的配置文件<h2 id="资源处理"><a href="#资源处理" class="headerlink" title="资源处理"></a>资源处理</h2><h3 id="icomoon"><a href="#icomoon" class="headerlink" title="icomoon"></a>icomoon</h3><a href="https://icomoon.io/app/" target="_blank" rel="noopener">icomoon</a>在线制作图标字体文件。可以随意选择已经存在的或者上传自己的图标生成字体文件。down下来的字体格式有多种，另外，配有demo及使用说明。</li>
+</ul>
+<p>—为什么要使用？</p>
+<p>图片增加了总文件的大小和额外的”http请求”，会大大降低网页的性能。并且不能很好的进行“缩放”，因此，有时候在“响应式设计”中需要使用图像的最好解决方案就是不去使用图片。 </p>
+<ul>
+<li>很容易任意地缩放；</li>
+<li>很容易地改变颜色；</li>
+<li>很容易地产生阴影；</li>
+<li>可以拥有透明效果；</li>
+<li>一般来说，有先进的浏览器支持；</li>
+<li>可以使用CSS来装饰（可以得到CSS很好支持）；</li>
+<li>可以快速转化形态（做出一些变化，如 :hover等）；</li>
+<li>可以做出跟图片一样可以做的事情（改变透明度、旋转度，等）；</li>
+<li>本身体积更小，但携带的信息并没有削减。<h3 id="jsonview"><a href="#jsonview" class="headerlink" title="jsonview"></a>jsonview</h3>链接:<a href="https://pan.baidu.com/s/1OeWq9aDDxZDg2_9RqDQa6Q" target="_blank" rel="noopener">https://pan.baidu.com/s/1OeWq9aDDxZDg2_9RqDQa6Q</a>  密码:zy71</li>
+</ul>
+<p>可以将json数据格式化显示。更多工具–扩展程序，直接拖入即可。</p>
+<h2 id="mock数据"><a href="#mock数据" class="headerlink" title="mock数据"></a>mock数据</h2><p>新版dev-client与dev-server不见的问题。</p>
+<p>参考网址:<a href="https://www.xiuyuan.info/?p=230#comment-194" target="_blank" rel="noopener">https://www.xiuyuan.info/?p=230#comment-194</a></p>
+<h2 id="样式重置"><a href="#样式重置" class="headerlink" title="样式重置"></a>样式重置</h2><p><a href="https://cssreset.com/" target="_blank" rel="noopener">cssreset</a>里面有很多种css样式重置的代码，可以选择其中一种，但是要注册，另外，我自己这边访问的时候挺慢的。其实网上也有很多将官网代码展示出来的，so我们就可以不用费事去注册了。比如<a href="https://meyerweb.com/eric/tools/css/reset/" target="_blank" rel="noopener">这个</a>，<a href="https://blog.csdn.net/liu857279611/article/details/52195906" target="_blank" rel="noopener">这个</a></p>
+<h2 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h2><ul>
+<li>semi,多余的分号错误</li>
+<li>indent，缩进错误</li>
+<li>no-multiple-empty-lines,空行太多，最多只允许有一行。</li>
+<li>key-spacing,意思就是说属性的键后面跟的值要在紧挨着属性的冒号后再空一个格。</li>
+<li>/<em> eslint-disable no-new </em>/在js里面，new 一个对象，需要赋值给某个值（变量），用Vue实例化的时候，不需要赋值给值（变量），所以要单独给配一条规则，给new Vue这行代码上面加这个注释，把这行代码规则的校验跳过，通过eslint-disable。eslint的常用技巧之一。如果我们去掉这个注释的话，会报这样的错误。<code>message: &#39;Do not use &#39;new&#39; for side effects. (no-new)&#39;</code><h2 id="vue模板设置"><a href="#vue模板设置" class="headerlink" title="vue模板设置"></a>vue模板设置</h2>参考网址:<a href="https://www.cnblogs.com/fayin/p/7910518.html" target="_blank" rel="noopener">https://www.cnblogs.com/fayin/p/7910518.html</a><br>mac下的话是code——首选项——用户代码片段——输入vue，会有vue.json与vue-html.json，这两个文件的话，要在vue.json里面进行设置。设置成功后，输入vue，enter即可。<h2 id="postcss"><a href="#postcss" class="headerlink" title="postcss"></a>postcss</h2>官方网站: <a href="http://postcss.org" target="_blank" rel="noopener">http://postcss.org</a><br>在安装vue的时候就已经将其安装好。它可以自动帮我们处理一些css兼容性的问题。<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2></li>
+<li><a href="https://www.cnblogs.com/qingqingzou-143/p/7068514.html" target="_blank" rel="noopener">Do not use built-in or reserved HTML elements as id:header</a> 意思是说vue的组件命名不能与html5重复。另外那些不合法的、vue保留的也不能用作组件名。</li>
+<li>错误如下:问题是我们使用less作为css预处理器，并将style的lang设置为less。但是此时没有加载node模块中的less-loader，因此，编译器不能识别less的语言。问题中讲的很清楚，npm install less-loader –save即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">This dependency was not found:</span><br><span class="line"></span><br><span class="line">* !!vue-style-loader!css-loader?&#123;&quot;sourceMap&quot;:true&#125;!../node_modules/vue-loader/lib/style-compiler/index?&#123;&quot;vue&quot;:true,&quot;id&quot;:&quot;data-v</span><br><span class="line">-7ba5bd90&quot;,&quot;scoped&quot;:false,&quot;hasInlineConfig&quot;:false&#125;!less-loader?&#123;&quot;sourceMap&quot;:true&#125;!../node_modules/vue-loader/lib/selector?type=</span><br><span class="line">styles&amp;index=0!./App.vue in ./src/App.vue</span><br><span class="line"></span><br><span class="line">To install it, you can run: npm install --save !!vue-style-loader!css-loader?&#123;&quot;sourceMap&quot;:true&#125;!../node_modules/vue-loader/lib/</span><br><span class="line">style-compiler/index?&#123;&quot;vue&quot;:true,&quot;id&quot;:&quot;data-v-7ba5bd90&quot;,&quot;scoped&quot;:false,&quot;hasInlineConfig&quot;:false&#125;!less-loader?&#123;&quot;sourceMap&quot;:true&#125;!</span><br><span class="line">../node_modules/vue-loader/lib/selector?type=styles&amp;index=0!./App.vue</span><br><span class="line">+</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
@@ -377,13 +373,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/01/29/180227html/">菜鸟教程——HTML</a></p>
+        <p><span>本文标题:</span><a href="/2018/03/24/20180324vue1/">Vue.js高仿饿了么外卖App学习笔记(一)</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Gentlelynn</a></p>
-        <p><span>发布时间:</span>2018-01-29, 21:27:51</p>
-        <p><span>最后更新:</span>2018-02-27, 21:37:57</p>
+        <p><span>发布时间:</span>2018-03-24, 11:41:16</p>
+        <p><span>最后更新:</span>2018-03-28, 11:51:35</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/01/29/180227html/" title="菜鸟教程——HTML">https://gentlelynn.github.io/2018/01/29/180227html/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://gentlelynn.github.io/2018/01/29/180227html/　　作者: Gentlelynn" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/03/24/20180324vue1/" title="Vue.js高仿饿了么外卖App学习笔记(一)">https://gentlelynn.github.io/2018/03/24/20180324vue1/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://gentlelynn.github.io/2018/03/24/20180324vue1/　　作者: Gentlelynn" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -396,15 +392,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/01/30/180227next/">
-                    nextjs学习笔记(一)
+                <a href="/2018/03/25/20180325resume2/">
+                    前端面试总结————心理（二）
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/12/04/20171204/">
-                    《ThinkinJava》读书笔记就一篇
+                <a href="/2018/03/13/180313resume1/">
+                    这两天做简历时遇到的问题及解决方案
                 </a>
             </div>
         
@@ -416,7 +412,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-html简介"><span class="toc-number">1.</span> <span class="toc-text">1.html简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-html编辑器"><span class="toc-number">2.</span> <span class="toc-text">2.html编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-h1～h6"><span class="toc-number">3.</span> <span class="toc-text">3.h1～h6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-格式化标签"><span class="toc-number">4.</span> <span class="toc-text">4.格式化标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-链接"><span class="toc-number">5.</span> <span class="toc-text">5.链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-邮件发送"><span class="toc-number">6.</span> <span class="toc-text">6.邮件发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-base标签"><span class="toc-number">7.</span> <span class="toc-text">7.base标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-图像映射"><span class="toc-number">8.</span> <span class="toc-text">8.图像映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-表格"><span class="toc-number">9.</span> <span class="toc-text">9.表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-列表"><span class="toc-number">10.</span> <span class="toc-text">10.列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-特殊知识"><span class="toc-number">11.</span> <span class="toc-text">11.特殊知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-url-uniform-resource-locator"><span class="toc-number">12.</span> <span class="toc-text">12.url(uniform resource locator)</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vue的介绍和安装"><span class="toc-number">1.</span> <span class="toc-text">vue的介绍和安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目文件介绍"><span class="toc-number">2.</span> <span class="toc-text">项目文件介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资源处理"><span class="toc-number">3.</span> <span class="toc-text">资源处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#icomoon"><span class="toc-number">3.1.</span> <span class="toc-text">icomoon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jsonview"><span class="toc-number">3.2.</span> <span class="toc-text">jsonview</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mock数据"><span class="toc-number">4.</span> <span class="toc-text">mock数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样式重置"><span class="toc-number">5.</span> <span class="toc-text">样式重置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint"><span class="toc-number">6.</span> <span class="toc-text">eslint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue模板设置"><span class="toc-number">7.</span> <span class="toc-text">vue模板设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#postcss"><span class="toc-number">8.</span> <span class="toc-text">postcss</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误"><span class="toc-number">9.</span> <span class="toc-text">错误</span></a></li></ol>
         
     </div>
     <style>
@@ -452,7 +448,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"菜鸟教程——HTML　| For my cat　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Vue.js高仿饿了么外卖App学习笔记(一)　| For my cat　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -468,7 +464,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2018/01/29/180227html/" data-title="菜鸟教程——HTML" data-url="https://gentlelynn.github.io/2018/01/29/180227html/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2018/03/24/20180324vue1/" data-title="Vue.js高仿饿了么外卖App学习笔记(一)" data-url="https://gentlelynn.github.io/2018/03/24/20180324vue1/"></div>
     <script>
         var duoshuoQuery = {short_name:""};
         var loadComment = function(){
@@ -491,7 +487,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/01/30/180227next/" title="上一篇: nextjs学习笔记(一)">
+            <a href="/2018/03/25/20180325resume2/" title="上一篇: 前端面试总结————心理（二）">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -499,7 +495,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/12/04/20171204/" title="下一篇: 《ThinkinJava》读书笔记就一篇">
+            <a href="/2018/03/13/180313resume1/" title="下一篇: 这两天做简历时遇到的问题及解决方案">
                 <i class="fa fa-angle-right"></i>
             </a>
         
