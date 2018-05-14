@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Gentlelynn" />
+
+
+
+<meta name="description" content="为实现图片的拖拽排序而重写upload组件的踩坑填坑过程">
+<meta name="keywords" content="elementui vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次elementui图片上传功能的重构">
+<meta property="og:url" content="https://gentlelynn.github.io/2018/05/14/elementupload/index.html">
+<meta property="og:site_name" content="For my cat">
+<meta property="og:description" content="为实现图片的拖拽排序而重写upload组件的踩坑填坑过程">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-14T17:05:29.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次elementui图片上传功能的重构">
+<meta name="twitter:description" content="为实现图片的拖拽排序而重写upload组件的踩坑填坑过程">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="For my cat" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>记一次elementui图片上传功能的重构 | For my cat</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Gentlelynn</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-html/">css html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elementui-vue/">elementui vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/express/">express</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/">html css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-html-css/">js html css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextjs/">nextjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客搭建/">博客搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术名词/">技术名词</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线下活动/">线下活动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻译/">翻译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gentlelynn</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Gentlelynn</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">莫问野人生计事，窗前流水枕前书</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18811485399@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/3835004209/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PaicHyperionDev/hexo-generator-search" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-elementupload" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/14/elementupload/" class="article-date">
+      <time datetime="2018-05-14T14:36:56.000Z" itemprop="datePublished">2018-05-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次elementui图片上传功能的重构
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elementui-vue/">elementui vue</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>    为实现图片的拖拽排序而重写upload组件的踩坑填坑过程<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h3 id="1-拖拽的实现"><a href="#1-拖拽的实现" class="headerlink" title="1. 拖拽的实现"></a>1. 拖拽的实现</h3><h4 id="1-dom操作"><a href="#1-dom操作" class="headerlink" title="1.dom操作"></a>1.dom操作</h4><p>原本已经封装好的elementui来说，它的图片是一个fileList的数组，而拖拽的话，需要对dom进行操作，因此，我们首先想到的是能否取到img的src并将其放在一个div中，循环遍历显示出我们上传后的图片(下文中的fileArray只是一个假定值，代表我们在data里面定义的这个model值)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-for=&quot;item in fileArray&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;item中存放的地址&quot;&gt;    </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这里要说的是，已经上传成功的response值和我们在上传图片成功时的返回值的数据结构并不一样。因此我们需要想办法取其共同点并且构造成一个新的数组，得到我们的fileArray。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fnBsnUploadPicSuccess(response, file, fileList) &#123;</span><br><span class="line">    if (response &amp;&amp; response.result &amp;&amp; response.result.res_path) &#123;</span><br><span class="line">        this.fileArray = this.fileArray.concat(response.result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-拖拽"><a href="#2-拖拽" class="headerlink" title="2.拖拽"></a>2.拖拽</h4><p>这个直接利用组件去实现，最开始的时候我选用的是<a href="https://github.com/SortableJS/Vue.Draggable" target="_blank" rel="noopener">vue.draggable</a>，star还不错，效果也有，但是问题出现了，保存之后的结果依然是未排序之前的？这，难道它只实现了拖拽效果，而没有实现排序之后的数据结构的改变？尴尬了。我要去怎么搞？再搞一插件？给每个类都加一个class？来存储这排序之后的东西么？网上查了很久，也没有发现特别有用的，有些垂直列表之类的可以利用偏移值，然而我这是不确定的一个个排列下来的行内元素啊。突然转机，发现一个感觉还可以的插件，既能排序，也能保存，开心。立马抛弃了之前的vue.draggable，换上了新的<a href="https://github.com/hilongjw/vue-dragging" target="_blank" rel="noopener">vue-dragging</a>。效果也是棒棒哒～开心！好景不长！当我把这个插件用到同一个页面中的另一个功能相同的组件中时，报错了！这里面一个非常关键的值就是找不到！悲伤的是，这个并不晓得去哪里解决这个问题，而且发现issue里面也有和我类似的问题，，，悲伤，，，好吧，再次回归到vue.draggable，star这么多一定是有的它的道理，而且人家应该也会考虑到这种问题吧。认真看了它的文档，重要的是down下它的demo。好吧，傻的人家有model用来存放他们的顺序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;draggable v-model=&quot;myArray&quot; :options=&quot;&#123;draggable:&apos;.item&apos;&#125;&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;item in fileArray&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;item中存放的地址&quot;&gt;    </span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/draggable&gt;</span><br></pre></td></tr></table></figure></p>
+<p>其中myArray就是用来存放顺序的数组，options呢暂时还没有发现它的作用。折腾来折腾去又回到了原点。</p>
+<ul>
+<li>学习一个插件最快的方式是它的demo</li>
+<li>插件的话，一定要选择可用性可维护性更强的。</li>
+<li>文档要好好读<h4 id="3-图片的查看"><a href="#3-图片的查看" class="headerlink" title="3.图片的查看"></a>3.图片的查看</h4>直接将图片放入一个对话框，并且通过查看按钮控制对话框的显示与隐藏即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 点击查看图片,注意此时还是利用数组下标来实现</span><br><span class="line">fnClickPreviewPic(index) &#123;</span><br><span class="line">    this.布尔值 = true;</span><br><span class="line">    this.sImgUrl = 图片地址</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="4-删除"><a href="#4-删除" class="headerlink" title="4.删除"></a>4.删除</h4><p>与查看相似利用数组的原生方法即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 删除图片</span><br><span class="line">fnBsnRemovePic(index) &#123;</span><br><span class="line">    this.fileArray.splice(index, 1);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-类似elementui的遮罩层和按钮的实现"><a href="#5-类似elementui的遮罩层和按钮的实现" class="headerlink" title="5. 类似elementui的遮罩层和按钮的实现"></a>5. 类似elementui的遮罩层和按钮的实现</h4><p><a href="http://blog.acwong.org/2015/03/17/common-picture-hover-effects/" target="_blank" rel="noopener">这个网站还不错，很多hover效果大家都可以好好参考一下</a><br>利用tranform和opacity，比较关键的点就是元素hover之后对其他标签做的效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;mask mask1&quot;)&gt;</span><br><span class="line">    &lt;i class=&quot;el-icon-zoom-in&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;i class=&quot;el-icon-delete&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>拖拽并没有单独做一个按钮，因为其实它的效果并不是你点到某个按钮才会去实现这个效果。而是随便点到图片的某个地方即可，因此只是将鼠标的样式改成了move。这样可能会和上面的按钮冲突，因此我们将按钮的点击区域设置为一个固定的很小的地方，在这里面cursor为pointer，而其他地方我们则给他换回move。</p>
+<p>以上步骤都完成之后，看似很完美，但是如果你需要对上传的总数做限制，那么你就happy了，这个limit真的是脑细胞都要死光了。</p>
+<h3 id="2-让我想砸电脑的limit"><a href="#2-让我想砸电脑的limit" class="headerlink" title="2.让我想砸电脑的limit"></a>2.让我想砸电脑的limit</h3><p>elementui里面实现一个这个真的是很简单啊，如果你设置了limit为一个数之后，只要它超过这个数，就是走到on-exceed函数。然而，我们现在弃用了它，只保留了上传的功能，如果只是将它设置为一个固定值，是肯定不行滴。</p>
+<h4 id="think-one"><a href="#think-one" class="headerlink" title="think one"></a>think one</h4><p>因为我们能得到这次上传的值，以及我们已经上传的值，如果它超过这个值，就抛出错误，这样好像很完美，ok，试之。ok，为limit绑定一个值num，并且在初始化时将它的值设置为<code>总长度-已经上传的图片数量</code>,每次上传成功或者删除图片时都去修改这个值。ok，开始时没有问题，可是当我们删除几个再次添加时候函数走到on-exceed。失败～</p>
+<h4 id="think-two"><a href="#think-two" class="headerlink" title="think two"></a>think two</h4><p>不绑变量了，ok，我们直接给他设置成<code>总长度-已经上传的图片数量</code>，并且我打印了这个值，嗯嗯，看起来好像很符合要求，简单试了一下上传多个的，ok，完全没有问题啊，就在我以为问题解决了而窃喜的时候，问题又来了、、、，如果我此时已经上传了4张，限制数量为6张，limit此时为3，而我即使只是上传一张，也没有成功。。。各个环节都没有问题啊，到底是为什么。</p>
+<h4 id="think-three"><a href="#think-three" class="headerlink" title="think three"></a>think three</h4><p>在on-success中直接对fileArray做剪切，只显示其中的前6个，ok，这样确实看起来起到了效果，但是问题是，这些图片已经全部上传成功，对后端服务的压力很大，也并不符合我们设计的初衷。</p>
+<h4 id="think-four"><a href="#think-four" class="headerlink" title="think four"></a>think four</h4><p>before-upload，这个函数是我曾经一度想使用看看的，可以在上传图片之前对图片做处理。如果超出限制，可以避免think three中的问题，然而，这个函数每上传一张都会执行一次，我们可以去维护一个变量监测到底有没有超出limit，但是当我们批量上传的时候，它可能还是存在只是没有超出limit的图片上传成功，而后面的都失败了，这样的用户体验并不好。也许排在后面的才是我们想上传的。</p>
+<h4 id="think-five"><a href="#think-five" class="headerlink" title="think five"></a>think five</h4><p>想来想去，还是要从limit入手。到底为什么删删传传几次之后即使 <code>要上传的数量&lt;limit</code>还是会执行on-exceed函数呢？？？后面查了很多资料，有些不太记得了，elementui的源码中，封装的这个函数的源码,如果<code>files的长度+fileList的长度&gt;limit</code>那么就会执行这个函数。ok算是有点思路了，毕竟知道问题处在哪里，就有一点点儿方向了。</p>
+<p>删除上传的时候，我们并没有对fileList做操作。导致它可能会有一个累加的效果。因此，我们要对这一部分数据做处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">limit长度=限制长度 - fileArray的长度 + fileList.length;</span><br></pre></td></tr></table></figure></p>
+<p>这大概是最核心的地方了。虽然只有一行代码。</p>
+<p>自己测试了一下，暂时并没有发现什么问题。</p>
+<h3 id="3-写在最后"><a href="#3-写在最后" class="headerlink" title="3.写在最后"></a>3.写在最后</h3><ul>
+<li>也许当你想修改一个东西的时候，搞清它的原理很重要，毕竟知己知彼方能百战不殆</li>
+<li>要想学一个陌生的东西，demo是个不错的快速上手的方式</li>
+<li>选择是一个很重要的方式，有些东西不必坚持，不必备选，有些需要坚持。看它的star值不值得了。</li>
+<li>不得不说的是，写这个东西真的花费了我很多的时间，确实最后代码量并没有多少，让人觉得你可能有偷懒的成分在里面，但是我并不想因此被别人否定如果它的时间与代码的长度不成正比。因为我真的有认真思考这个东西。</li>
+<li>有些你觉得不可能的事情还是会实现，比如这个东西我真的很想放弃它</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/05/14/elementupload/">记一次elementui图片上传功能的重构</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Gentlelynn</a></p>
+        <p><span>发布时间:</span>2018-05-14, 22:36:56</p>
+        <p><span>最后更新:</span>2018-05-15, 01:05:29</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/05/14/elementupload/" title="记一次elementui图片上传功能的重构">https://gentlelynn.github.io/2018/05/14/elementupload/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://gentlelynn.github.io/2018/05/14/elementupload/　　作者: Gentlelynn" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/04/02/20180402resume/">
+                    web前端开发工程师简历——lynn
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-拖拽的实现"><span class="toc-number">1.</span> <span class="toc-text">1. 拖拽的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-dom操作"><span class="toc-number">1.1.</span> <span class="toc-text">1.dom操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-拖拽"><span class="toc-number">1.2.</span> <span class="toc-text">2.拖拽</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-图片的查看"><span class="toc-number">1.3.</span> <span class="toc-text">3.图片的查看</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-删除"><span class="toc-number">1.4.</span> <span class="toc-text">4.删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-类似elementui的遮罩层和按钮的实现"><span class="toc-number">1.5.</span> <span class="toc-text">5. 类似elementui的遮罩层和按钮的实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-让我想砸电脑的limit"><span class="toc-number">2.</span> <span class="toc-text">2.让我想砸电脑的limit</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#think-one"><span class="toc-number">2.1.</span> <span class="toc-text">think one</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#think-two"><span class="toc-number">2.2.</span> <span class="toc-text">think two</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#think-three"><span class="toc-number">2.3.</span> <span class="toc-text">think three</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#think-four"><span class="toc-number">2.4.</span> <span class="toc-text">think four</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#think-five"><span class="toc-number">2.5.</span> <span class="toc-text">think five</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-写在最后"><span class="toc-number">3.</span> <span class="toc-text">3.写在最后</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"记一次elementui图片上传功能的重构　| For my cat　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2018/05/14/elementupload/" data-title="记一次elementui图片上传功能的重构" data-url="https://gentlelynn.github.io/2018/05/14/elementupload/"></div>
+    <script>
+        var duoshuoQuery = {short_name:""};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/04/02/20180402resume/" title="下一篇: web前端开发工程师简历——lynn">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/14/elementupload/">记一次elementui图片上传功能的重构</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/02/20180402resume/">web前端开发工程师简历——lynn</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/31/20180331baidu/">第77期百度技术沙龙参会后记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/25/20180325resume2/">前端面试总结————心理（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/24/20180324vue1/">Vue.js高仿饿了么外卖App学习笔记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/180313resume1/">这两天做简历时遇到的问题及解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/06/20180316float/">前端工程师面试第三弹--浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/03/20180303/">前端工程师面试第二弹——布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/03/0303get/">一个程序媛的心路历程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/20170302cen/">前端工程师面试第一弹——水平居中&垂直居中&水平垂直都居中</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/01/20180316rew/">前端工程师面试总结——心理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/28/180228/">由两个span元素引发的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/sentences/">那些我觉得很美很美的句子</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/180227next/">nextjs学习笔记(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/29/180227html/">菜鸟教程——HTML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/04/20171204/">《ThinkinJava》读书笔记就一篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/180102/">我想和你好好的</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/18/20180110data1/">大话数据结构读书笔记(一)——冒泡排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/20171120express/">express的安装和使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/20170826/">胆小的戏精女——独立回家</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/20170720/">《坦白书》读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/03/20170303/">记录一些我可能遇见的技术名词</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/12/zbj180227/">The art of writing small and plain functions</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/27/180227blog/">hexo+github博客搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/30/mycat/">我的猫</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/30/myself/">个人原创片段</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2018 Gentlelynn
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
